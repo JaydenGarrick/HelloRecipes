@@ -19,7 +19,7 @@
 		81C963D22066F7A300B6AA0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C963D12066F7A300B6AA0D /* AppDelegate.swift */; };
 		81C963D72066F7A300B6AA0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C963D52066F7A300B6AA0D /* Main.storyboard */; };
 		81C963DC2066F7A300B6AA0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C963DA2066F7A300B6AA0D /* LaunchScreen.storyboard */; };
-		81C963E82066F9BF00B6AA0D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C963E72066F9BF00B6AA0D /* CameraViewController.swift */; };
+		81C963E82066F9BF00B6AA0D /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C963E72066F9BF00B6AA0D /* ScanViewController.swift */; };
 		81C963F5206706DB00B6AA0D /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C963F4206706DB00B6AA0D /* CoreML.framework */; };
 		81CD2782207C17B6004F1B38 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD2781207C17B6004F1B38 /* WebViewController.swift */; };
 		81DBD4C52067108F00944B8A /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DBD4C42067108F00944B8A /* IngredientsViewController.swift */; };
@@ -50,7 +50,7 @@
 		81C963D62066F7A300B6AA0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81C963DB2066F7A300B6AA0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81C963DD2066F7A300B6AA0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81C963E72066F9BF00B6AA0D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		81C963E72066F9BF00B6AA0D /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		81C963F4206706DB00B6AA0D /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 		81CD2781207C17B6004F1B38 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		81DBD4C42067108F00944B8A /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		81C963E92066F9C300B6AA0D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				81C963E72066F9BF00B6AA0D /* CameraViewController.swift */,
+				81C963E72066F9BF00B6AA0D /* ScanViewController.swift */,
 				81DBD4C42067108F00944B8A /* IngredientsViewController.swift */,
 				81907A9520718E9A00DD2FE0 /* CameraRollViewController.swift */,
 				816F14DC2074548F009C9016 /* RecipeListCollectionViewController.swift */,
@@ -342,7 +342,7 @@
 				81C963D22066F7A300B6AA0D /* AppDelegate.swift in Sources */,
 				81907A9820718F3400DD2FE0 /* PhotoSelectorCell.swift in Sources */,
 				81DBD4D32067347200944B8A /* Recipe.swift in Sources */,
-				81C963E82066F9BF00B6AA0D /* CameraViewController.swift in Sources */,
+				81C963E82066F9BF00B6AA0D /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

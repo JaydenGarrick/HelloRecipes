@@ -15,10 +15,6 @@ class PhotoSelectorCell: UICollectionViewCell {
         iv.backgroundColor = .lightGray
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.layer.cornerRadius = 5
-        iv.layer.borderWidth = 0.25
-        iv.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.5607843137, blue: 0.3411764706, alpha: 1)
-
         return iv
     }()
     

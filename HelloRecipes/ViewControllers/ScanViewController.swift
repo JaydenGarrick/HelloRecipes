@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import Vision
 
-class CameraViewController: UIViewController {
+class ScanViewController: UIViewController {
 
     // MARK: - Constants and Variables
     var uiColors = UIColor.uiColors {
@@ -43,8 +43,8 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var recipesBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var navigationBarBorderView: UIView!
-    
     @IBOutlet weak var objectSelectionView: UIView!
+    @IBOutlet weak var buttonAndYesLabelStackView: UIStackView!
     
     
     
@@ -89,16 +89,21 @@ class CameraViewController: UIViewController {
                 self.segmentedControllerBottomConstraint.constant = 4
                 self.segmentedControllerTopConstraint.constant = 50
                 
+                self.buttonAndYesLabelStackView.isHidden = false
+
+                
             } else if self.segmentedController.selectedSegmentIndex == 1 {
                 self.inferredObjectLabel.isHidden = true
                 self.pictureView.isHidden = false
                 self.cameraRollView.isHidden = true
-                self.scannerView.isHidden = true
+                self.scannerView.isHidden = false
                 self.objectSelectionView.isHidden = false
                 
                 // Handle Constraint to bump up Segmented Controller
                 self.segmentedControllerBottomConstraint.constant = 50
                 self.segmentedControllerTopConstraint.constant = 4
+                
+                self.buttonAndYesLabelStackView.isHidden = true
                 
             } else if self.segmentedController.selectedSegmentIndex == 2 {
                 self.inferredObjectLabel.isHidden = true
@@ -110,6 +115,9 @@ class CameraViewController: UIViewController {
                 // Handle Constraint to bump up Segmented Controller
                 self.segmentedControllerBottomConstraint.constant = 50
                 self.segmentedControllerTopConstraint.constant = 4
+                
+                self.buttonAndYesLabelStackView.isHidden = true
+
             }
             
         })
@@ -186,7 +194,7 @@ class CameraViewController: UIViewController {
     
 }
     
-extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension ScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
