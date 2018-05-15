@@ -13,23 +13,13 @@ import Vision
 class ScanViewController: UIViewController {
 
     // MARK: - Constants and Variables
-    var uiColors = UIColor.uiColors {
-        didSet {
-            UIColor.uiColors = uiColors
-        }
-    }
+    var uiColors = UIColor.uiColors
     
-    // IBOutlets and UI
+    // IBOutlets 
     @IBOutlet weak var scannerView: UIView! {
         didSet {
             scannerView.layer.cornerRadius = 5
             scannerView.layer.borderWidth = 1
-        }
-    }
-    @IBOutlet weak var pictureView: UIView! {
-        didSet {
-            pictureView.layer.cornerRadius = 5
-            pictureView.layer.borderWidth = 1
         }
     }
     @IBOutlet weak var cameraRollView: UIView! {
@@ -46,7 +36,9 @@ class ScanViewController: UIViewController {
     @IBOutlet weak var objectSelectionView: UIView!
     @IBOutlet weak var buttonAndYesLabelStackView: UIStackView!
     
-    
+    // Constraint Outlets
+    @IBOutlet weak var segmentedControllerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var segmentedControllerTopConstraint: NSLayoutConstraint!
     
     // Object that is being scanned
     var observedObject = ""
@@ -55,7 +47,7 @@ class ScanViewController: UIViewController {
         return true
     }
 
-    // MARK: - viewDidLoad
+    // MARK: - ViewLifeCycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setColorsForUI()
@@ -64,8 +56,6 @@ class ScanViewController: UIViewController {
         setupSegmentedControl()
     }
     
-    @IBOutlet weak var segmentedControllerBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var segmentedControllerTopConstraint: NSLayoutConstraint!
     // MARK: - IBActions
     @IBAction func yesButtonTapped(_ sender: Any) {
         IngredientController.shared.add(ingredient: observedObject)
@@ -76,48 +66,52 @@ class ScanViewController: UIViewController {
         performSegue(withIdentifier: "toRecipes", sender: self)
     }
     
+    fileprivate func handleScanViews() {
+        inferredObjectLabel.isHidden = false
+        cameraRollView.isHidden = true
+        scannerView.isHidden = false
+        objectSelectionView.isHidden = true
+        
+        // Handle Constraint to bump down Segmented Controller
+        segmentedControllerBottomConstraint.constant = 4
+        segmentedControllerTopConstraint.constant = 50
+        buttonAndYesLabelStackView.isHidden = false
+    }
+    
+    fileprivate func handlePictureView() {
+        inferredObjectLabel.isHidden = true
+        cameraRollView.isHidden = true
+        scannerView.isHidden = false
+        objectSelectionView.isHidden = false
+        
+        // Handle Constraint to bump up Segmented Controller
+        segmentedControllerBottomConstraint.constant = 50
+        segmentedControllerTopConstraint.constant = 4
+        buttonAndYesLabelStackView.isHidden = true
+        scannerView.translatesAutoresizingMaskIntoConstraints = false
+        scannerView.topAnchor.constraint(equalTo: self.segmentedController.bottomAnchor, constant: 5).isActive = true
+    }
+    
+    fileprivate func handleCameraRollView() {
+        inferredObjectLabel.isHidden = true
+        cameraRollView.isHidden = false
+        scannerView.isHidden = true
+        objectSelectionView.isHidden = false
+        
+        // Handle Constraint to bump up Segmented Controller
+        segmentedControllerBottomConstraint.constant = 50
+        segmentedControllerTopConstraint.constant = 4
+        buttonAndYesLabelStackView.isHidden = true
+    }
+    
     @IBAction func segmentedControllerChanged(_ sender: UISegmentedControl) {
         UIView.animate(withDuration: 0.25, animations: {
             if self.segmentedController.selectedSegmentIndex == 0 {
-                self.inferredObjectLabel.isHidden = false
-                self.pictureView.isHidden = true
-                self.cameraRollView.isHidden = true
-                self.scannerView.isHidden = false
-                self.objectSelectionView.isHidden = true
-                
-                // Handle Constraint to bump down Segmented Controller
-                self.segmentedControllerBottomConstraint.constant = 4
-                self.segmentedControllerTopConstraint.constant = 50
-                
-                self.buttonAndYesLabelStackView.isHidden = false
-
-                
+                self.handleScanViews()
             } else if self.segmentedController.selectedSegmentIndex == 1 {
-                self.inferredObjectLabel.isHidden = true
-                self.pictureView.isHidden = false
-                self.cameraRollView.isHidden = true
-                self.scannerView.isHidden = false
-                self.objectSelectionView.isHidden = false
-                
-                // Handle Constraint to bump up Segmented Controller
-                self.segmentedControllerBottomConstraint.constant = 50
-                self.segmentedControllerTopConstraint.constant = 4
-                
-                self.buttonAndYesLabelStackView.isHidden = true
-                
+                self.handlePictureView()
             } else if self.segmentedController.selectedSegmentIndex == 2 {
-                self.inferredObjectLabel.isHidden = true
-                self.pictureView.isHidden = true
-                self.cameraRollView.isHidden = false
-                self.scannerView.isHidden = true
-                self.objectSelectionView.isHidden = false
-                
-                // Handle Constraint to bump up Segmented Controller
-                self.segmentedControllerBottomConstraint.constant = 50
-                self.segmentedControllerTopConstraint.constant = 4
-                
-                self.buttonAndYesLabelStackView.isHidden = true
-
+                self.handleCameraRollView()
             }
             
         })
@@ -131,14 +125,12 @@ class ScanViewController: UIViewController {
         segmentedController.layer.borderColor = uiColors.primary.cgColor
         segmentedController.layer.borderWidth = 1
         segmentedController.layer.cornerRadius = 5
-        
         objectSelectionView.isHidden = true
     }
     
     fileprivate func setColorsForUI() {
         navigationBarBorderView.backgroundColor = uiColors.primary
         scannerView.layer.borderColor = uiColors.primary.cgColor
-        pictureView.layer.borderColor = uiColors.primary.cgColor
         cameraRollView.layer.borderColor = uiColors.primary.cgColor
         inferredObjectLabel.textColor = uiColors.primary
         yesButton.layer.borderColor = uiColors.primary.cgColor
@@ -155,7 +147,6 @@ class ScanViewController: UIViewController {
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         captureSession.addInput(input)
-        
         captureSession.startRunning()
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -163,7 +154,6 @@ class ScanViewController: UIViewController {
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.frame.width, height: scannerView.frame.height)
         previewLayer.cornerRadius = 5
-        
         
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
@@ -193,7 +183,8 @@ class ScanViewController: UIViewController {
     }
     
 }
-    
+
+// MARK: - Handle Scan with AVCaptureVideoDataOutputSampleBufferDelegate
 extension ScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }

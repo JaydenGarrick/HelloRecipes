@@ -30,7 +30,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         return label
     }()
     
-    var selectedImage: UIImage? // Image that is being guess
+    var selectedImage: UIImage? // Image that is being guessed on
     
     var guesses = [String]() // Datasource
     
@@ -46,6 +46,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         guesses = [] // Clear out the guesses when the view dissapears
     }
     
+    // MARK: - Setup Functions
     fileprivate func setupUI() {
         view.addSubview(tapOnImageLabel)
         tapOnImageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0)
@@ -111,7 +112,6 @@ extension ObjectSelectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: 210, height: view.frame.height - 5)
     }
     
