@@ -40,6 +40,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         setupCollectionView()
         setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageTapped), name: .selectedImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoTapped), name: .photoButtonTapped, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +95,18 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
             try? VNImageRequestHandler(ciImage: ciImage).perform([request])
         }
     }
+    
+    @objc fileprivate func handlePhotoTapped(notification: Notification) {
+        if let guessesArray = notification.object as? [String] {
+            self.guesses = guessesArray
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                let indexPath = IndexPath(item: 0, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.left, animated: true)
+                self.setupUI()
+            }
+        }
+    }
 
 }
 
@@ -124,9 +137,5 @@ extension ObjectSelectionViewController: UICollectionViewDelegateFlowLayout {
         IngredientController.shared.add(ingredient: object)
         performSegue(withIdentifier: "toRecipes", sender: self)
     }
-    
-
-
-    
     
 }

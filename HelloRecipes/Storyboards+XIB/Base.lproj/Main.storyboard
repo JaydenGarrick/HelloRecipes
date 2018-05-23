@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AY4-nq-DQq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +16,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ScanViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(inferred Object)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UPF-Is-3EM">
-                                <rect key="frame" x="5" y="64" width="589" height="53"/>
+                                <rect key="frame" x="5" y="64" width="364" height="53"/>
                                 <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="30"/>
                                 <color key="textColor" red="0.80392156862745101" green="0.5607843137254902" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -24,10 +28,10 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-xY-Y7i">
-                                <rect key="frame" x="5" y="513.5" width="590" height="81.5"/>
+                                <rect key="frame" x="5" y="580.5" width="365" height="81.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Am I right?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJh-VE-mNK">
-                                        <rect key="frame" x="0.0" y="0.0" width="590" height="27.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="365" height="27.5"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
                                         <color key="textColor" red="0.80392156859999997" green="0.56078431370000004" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -35,10 +39,10 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pmh-qy-o5Z">
-                                        <rect key="frame" x="0.0" y="31.5" width="590" height="50"/>
+                                        <rect key="frame" x="0.0" y="31.5" width="365" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzi-wy-MC2">
-                                                <rect key="frame" x="0.0" y="0.0" width="590" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
                                                 <color key="backgroundColor" red="0.98431372549999996" green="0.93725490199999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="tX5-wG-EaW"/>
@@ -65,7 +69,7 @@
                                 <color key="backgroundColor" red="0.66902792453765869" green="0.73128575086593628" blue="0.94889926910400391" alpha="1" colorSpace="calibratedRGB"/>
                             </stackView>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avv-pC-FR4" userLabel="ScanView">
-                                <rect key="frame" x="5" y="147" width="590" height="357.5"/>
+                                <rect key="frame" x="5" y="147" width="365" height="425.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -74,10 +78,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aep-OJ-1aJ" userLabel="CameraRollview">
-                                <rect key="frame" x="5" y="147" width="590" height="357.5"/>
+                                <rect key="frame" x="5" y="147" width="365" height="425.5"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2T-zn-OGC">
-                                        <rect key="frame" x="0.0" y="0.0" width="590" height="357.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="365" height="425.5"/>
                                         <connections>
                                             <segue destination="BSX-Rx-XSY" kind="embed" id="Ga9-Xw-x41"/>
                                         </connections>
@@ -97,17 +101,17 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0s3-Kx-bgP" userLabel="NavBarBorderView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="1"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.56078431370000004" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="hQ2-gX-Phv"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rhb-u9-M8n" userLabel="ObjectSelectionView">
-                                <rect key="frame" x="0.0" y="508.5" width="600" height="91.5"/>
+                                <rect key="frame" x="0.0" y="576.5" width="375" height="90.5"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0s-kQ-4Hv">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="91"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                         <connections>
                                             <segue destination="BKe-Zy-j0y" kind="embed" id="iHF-ky-nFP"/>
                                         </connections>
@@ -122,7 +126,7 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CJh-Oh-ALO">
-                                <rect key="frame" x="5" y="115" width="590" height="29"/>
+                                <rect key="frame" x="5" y="115" width="365" height="29"/>
                                 <segments>
                                     <segment title="Scan"/>
                                     <segment title="Picture"/>
@@ -198,11 +202,11 @@
             <objects>
                 <viewController id="L1Z-cv-krg" customClass="IngredientsViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Guf-U2-6pS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqo-Bs-T3j">
-                                <rect key="frame" x="150" y="146.5" width="300" height="307"/>
+                                <rect key="frame" x="37.5" y="180" width="300" height="307"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xSA-KD-wLx" customClass="StretchingTableView" customModule="HelloRecipes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="307"/>
@@ -371,7 +375,7 @@
             <objects>
                 <collectionViewController title="Hello Recipes" id="3oq-hj-XTT" customClass="RecipeListCollectionViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hM3-cU-wRe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tqP-hm-obh">
@@ -407,7 +411,7 @@
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9mk-jS-31Y">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="LightPeach"/>
                     </navigationBar>
@@ -426,7 +430,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AY4-nq-DQq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lyZ-hN-czf">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98431372549999996" green="0.93725490199999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
@@ -447,7 +451,7 @@
             <objects>
                 <collectionViewController id="BSX-Rx-XSY" customClass="PhotoSelectorController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dZU-6m-WiV">
-                        <rect key="frame" x="0.0" y="0.0" width="404" height="493.66666666666669"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="425.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="phP-ko-DC8">
@@ -481,11 +485,11 @@
             <objects>
                 <viewController id="BKe-Zy-j0y" customClass="ObjectSelectionViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tna-1r-NS1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QO9-f6-reA">
-                                <rect key="frame" x="2" y="2" width="410" height="87"/>
+                                <rect key="frame" x="2" y="2" width="371" height="86"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IbH-hm-0It">
                                     <size key="itemSize" width="50" height="50"/>
@@ -528,7 +532,7 @@
             <objects>
                 <viewController id="fEG-oP-JLd" customClass="CameraViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Py3-nR-8Sv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="uJk-qc-AYx"/>

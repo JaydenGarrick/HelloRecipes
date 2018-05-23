@@ -13,11 +13,27 @@ import Vision
 class ScanViewController: UIViewController {
 
     // MARK: - Constants and Variables
-    var uiColors = UIColor.uiColors
+    var guessResultForCameraTapped = [String]()
     
+    var uiColors = UIColor.uiColors {
+        didSet {
+            UIColor.uiColors = uiColors
+        }
+    }
+    var captureSession: AVCaptureSession?
+    
+    let captureButton: UIButton = {
+        let button = UIButton()
+        button.isHidden = true
+        let attributedString = NSAttributedString.stylizedTextWith("⬤", shadowColor: UIColor.uiColors.primary, shadowOffSet: 2, mainTextColor: UIColor.uiColors.secondary, textSize: 50)
+        button.setAttributedTitle(attributedString, for: .normal)
+        return button
+    }()
+
     // IBOutlets 
     @IBOutlet weak var scannerView: UIView! {
         didSet {
+            scannerView.backgroundColor = .red
             scannerView.layer.cornerRadius = 5
             scannerView.layer.borderWidth = 1
         }
@@ -54,6 +70,7 @@ class ScanViewController: UIViewController {
         setupCamera()
         setupNavigationBar()
         setupSegmentedControl()
+        setupCaptureButton()
     }
     
     // MARK: - IBActions
@@ -67,6 +84,8 @@ class ScanViewController: UIViewController {
     }
     
     fileprivate func handleScanViews() {
+        captureSession?.startRunning()
+        captureButton.isHidden = true
         inferredObjectLabel.isHidden = false
         cameraRollView.isHidden = true
         scannerView.isHidden = false
@@ -79,6 +98,7 @@ class ScanViewController: UIViewController {
     }
     
     fileprivate func handlePictureView() {
+        captureButton.isHidden = false
         inferredObjectLabel.isHidden = true
         cameraRollView.isHidden = true
         scannerView.isHidden = false
@@ -93,6 +113,7 @@ class ScanViewController: UIViewController {
     }
     
     fileprivate func handleCameraRollView() {
+        captureButton.isHidden = true
         inferredObjectLabel.isHidden = true
         cameraRollView.isHidden = false
         scannerView.isHidden = true
@@ -138,26 +159,28 @@ class ScanViewController: UIViewController {
         yesButton.setTitleColor(uiColors.primary, for: .normal)
         recipesBarButtonItem.tintColor = uiColors.primary
         amIRightLabel.textColor = uiColors.primary
+        let attributedButtonString = NSAttributedString.stylizedTextWith("⬤", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 50)
+        captureButton.setAttributedTitle(attributedButtonString, for: .normal)
     }
     
     func setupCamera() {
-        let captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .photo
-        
+        captureSession = AVCaptureSession()
+        captureSession?.sessionPreset = .photo
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-        captureSession.addInput(input)
-        captureSession.startRunning()
+        captureSession?.addInput(input)
+        captureSession?.startRunning()
         
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
         scannerView.layer.addSublayer(previewLayer)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.frame.width, height: scannerView.frame.height)
-        previewLayer.cornerRadius = 5
+        previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.bounds.width + 45, height: scannerView.layer.frame.height + 100)
+
+        previewLayer.layoutIfNeeded()
         
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-        captureSession.addOutput(dataOutput)
+        captureSession?.addOutput(dataOutput)
     }
     
     fileprivate func setupNavigationBar() {
@@ -182,6 +205,23 @@ class ScanViewController: UIViewController {
         setColorsForUI()
     }
     
+    func setupCaptureButton() {
+        view.addSubview(captureButton)
+        captureButton.anchor(top: nil, left: scannerView.leftAnchor, bottom: scannerView.bottomAnchor, right: scannerView.rightAnchor, paddingTop: 0, paddingLeft: 40, paddingBottom: 20, paddingRight: 40, width: 40, height: 40)
+        
+        captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func captureButtonTapped() {
+        if captureSession?.isRunning == true {
+            NotificationCenter.default.post(name: NSNotification.Name.photoButtonTapped, object: guessResultForCameraTapped, userInfo: nil)
+            captureSession?.stopRunning()
+        } else {
+            captureSession?.startRunning()
+        }
+        
+    }
+    
 }
 
 // MARK: - Handle Scan with AVCaptureVideoDataOutputSampleBufferDelegate
@@ -190,7 +230,10 @@ extension ScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
         let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
+            
             guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
+            self.guessResultForCameraTapped = results.compactMap { $0.identifier }
+            self.guessResultForCameraTapped.forEach { print($0) }
             guard let firstObservation = results.first else { return }
             DispatchQueue.main.async {
                 self.inferredObjectLabel.text = "\(firstObservation.identifier)?"
@@ -200,17 +243,4 @@ extension ScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
 }
-
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
     

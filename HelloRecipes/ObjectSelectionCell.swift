@@ -13,6 +13,8 @@ class ObjectSelectionCell: UICollectionViewCell {
     var ingredient: String? {
         didSet {
             objectLabel.attributedText = NSAttributedString.stylizedTextWith(ingredient ?? "Unknown", shadowColor: UIColor.uiColors.primary, shadowOffSet: 1, mainTextColor: .white, textSize: 20)
+            self.backgroundColor = UIColor.uiColors.secondary
+            self.layer.borderColor = UIColor.uiColors.primary.cgColor
         }
     }
     

@@ -13,9 +13,11 @@ extension NSAttributedString {
         let shadow = NSShadow()
         shadow.shadowColor = shadowColor
         shadow.shadowOffset = CGSize(width: shadowOffSet, height: shadowOffSet)
-        let attributedText = NSMutableAttributedString(string: input, attributes: [NSAttributedStringKey.foregroundColor : mainTextColor,
-                                                                                   NSAttributedStringKey.shadow : shadow,
-                                                                                   NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: textSize) as Any])
+        let attributedText = NSMutableAttributedString(string: input, attributes: [
+            NSAttributedStringKey.foregroundColor : mainTextColor,
+            NSAttributedStringKey.shadow : shadow,
+            NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: textSize) as Any
+            ])
         return attributedText
     }
     

@@ -130,7 +130,6 @@ extension PhotoSelectorController: UICollectionViewDelegateFlowLayout {
         guard let selectedImage = selectedImage else { return }
         let imageDataDictionary:[String:UIImage] = ["image":selectedImage]
         NotificationCenter.default.post(name: .selectedImage, object: nil, userInfo: imageDataDictionary)
-
     }
     
 }
