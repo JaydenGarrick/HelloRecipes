@@ -37,8 +37,10 @@ extension UIView {
         shadow.shadowColor = primary
         shadow.shadowOffset = CGSize(width: 1, height: 1)
         viewController.navigationController?.navigationItem.title = "Hello Recipes"
-        viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                                                  NSAttributedStringKey.shadow : shadow,
-                                                                                  NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any]
+        viewController.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.shadow : shadow,
+            NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any
+        ]
     }
 }

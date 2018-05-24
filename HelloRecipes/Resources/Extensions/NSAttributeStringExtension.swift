@@ -20,6 +20,5 @@ extension NSAttributedString {
             ])
         return attributedText
     }
-    
 }
 

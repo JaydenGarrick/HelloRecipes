@@ -27,13 +27,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HelloRecipes/ViewControllers/RecipeListCollectionViewController.swift"
-            timestampString = "548872424.254485"
+            filePath = "HelloRecipes/ViewControllers/ScanViewController.swift"
+            timestampString = "548877752.987295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "setupActivityIndicator()"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "setColorsForUI()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

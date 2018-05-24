@@ -41,6 +41,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageTapped), name: .selectedImage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoTapped), name: .photoButtonTapped, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleColorChanged), name: .colorsChanged, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,6 +69,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         collectionView.showsHorizontalScrollIndicator = false
     }
     
+    // MARK: - Notification Functions
     @objc fileprivate func handleImageTapped(notification: Notification) {
         
         // Checking for image being tapped
@@ -106,6 +108,12 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
                 self.setupUI()
             }
         }
+    }
+    
+    @objc fileprivate func handleColorChanged(notification: Notification) {
+        collectionView.reloadData()
+        print("working")
+        tapOnImageLabel.isHidden = false
     }
 
 }

@@ -24,7 +24,6 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
                     self.seperatorView.isHidden = true
                     self.presentBadQueryAlert()
                 }
-
             }
         }
     }
@@ -80,6 +79,7 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
             guard let fetchedRecipes = fetchedRecipes else { return }
             self?.recipes = fetchedRecipes
             DispatchQueue.main.async {
+                self?.activityIndicatior.isHidden = true
                 self?.collectionView?.reloadData()
             }
         }
@@ -90,9 +90,11 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.uiColors.primary
         shadow.shadowOffset = CGSize(width: 1, height: 1)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                                   NSAttributedStringKey.shadow : shadow,
-                                                                   NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.shadow : shadow,
+            NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any
+        ]
         navigationController?.navigationItem.title = "Hello Recipes"
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.backItem?.backBarButtonItem?.title = "<"
@@ -188,7 +190,7 @@ extension RecipeListCollectionViewController {
     
 }
 
-// MARK: - Bad queue alert
+// MARK: - Bad query alert
 extension RecipeListCollectionViewController {
     func presentBadQueryAlert() {
         let alertController = UIAlertController(title: "Whoops.. 😅", message: "Couldn't find any recipes with those ingredients. Adjust your list and try again!", preferredStyle: .alert)

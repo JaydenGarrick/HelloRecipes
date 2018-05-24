@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name {
     static let selectedImage = NSNotification.Name("selectedImage")
     static let photoButtonTapped = NSNotification.Name("photoButtonTapped")
+    static let colorsChanged = NSNotification.Name("colorsChanged")
 }
