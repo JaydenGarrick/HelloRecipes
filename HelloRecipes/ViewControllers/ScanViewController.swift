@@ -248,7 +248,6 @@
             guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
             guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
             let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
-                
                 guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
                 self.guessResultForCameraTapped = results.compactMap { $0.identifier }
                 guard let firstObservation = results.first else { return }
