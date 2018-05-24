@@ -25,7 +25,7 @@ class ScanViewController: UIViewController {
     let captureButton: UIButton = {
         let button = UIButton()
         button.isHidden = true
-        let attributedString = NSAttributedString.stylizedTextWith("⬤", shadowColor: UIColor.uiColors.primary, shadowOffSet: 2, mainTextColor: UIColor.uiColors.secondary, textSize: 50)
+        let attributedString = NSAttributedString.stylizedTextWith("◉", shadowColor: UIColor.uiColors.primary, shadowOffSet: 2, mainTextColor: UIColor.uiColors.secondary, textSize: 70)
         button.setAttributedTitle(attributedString, for: .normal)
         return button
     }()
@@ -159,7 +159,7 @@ class ScanViewController: UIViewController {
         yesButton.setTitleColor(uiColors.primary, for: .normal)
         recipesBarButtonItem.tintColor = uiColors.primary
         amIRightLabel.textColor = uiColors.primary
-        let attributedButtonString = NSAttributedString.stylizedTextWith("⬤", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 50)
+        let attributedButtonString = NSAttributedString.stylizedTextWith("◉", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 70)
         captureButton.setAttributedTitle(attributedButtonString, for: .normal)
     }
     
@@ -233,7 +233,6 @@ extension ScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             
             guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
             self.guessResultForCameraTapped = results.compactMap { $0.identifier }
-            self.guessResultForCameraTapped.forEach { print($0) }
             guard let firstObservation = results.first else { return }
             DispatchQueue.main.async {
                 self.inferredObjectLabel.text = "\(firstObservation.identifier)?"
