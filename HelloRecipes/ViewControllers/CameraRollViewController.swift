@@ -15,11 +15,9 @@ class PhotoSelectorController: UICollectionViewController {
     let cellId = "cellId"
     
     var header: PhotoSelectorCell?
-    
     var images = [UIImage]()
     var selectedImage: UIImage?
     var assets = [PHAsset]()
-
     
     // MARK: - ViewLifeCycle Methods
     override func viewDidLoad() {
@@ -28,7 +26,6 @@ class PhotoSelectorController: UICollectionViewController {
         fetchPhotos()
         collectionView?.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(PhotoSelectorCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: cellId)
-
     }
     
     fileprivate func assetFetchOptions() -> PHFetchOptions {
@@ -130,21 +127,6 @@ extension PhotoSelectorController: UICollectionViewDelegateFlowLayout {
         guard let selectedImage = selectedImage else { return }
         let imageDataDictionary:[String:UIImage] = ["image":selectedImage]
         NotificationCenter.default.post(name: .selectedImage, object: nil, userInfo: imageDataDictionary)
-
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

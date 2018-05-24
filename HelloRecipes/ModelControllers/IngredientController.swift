@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Model Controller for Ingredient
 class IngredientController {
     
     // MARK: - Constants / Variables
@@ -15,18 +16,21 @@ class IngredientController {
     
     var ingredients = [Ingredient]() // Datasource
     
-    
     // MARK: - CRUD Functions
+    
+    /// Adds an ingredient to datasource
     func add(ingredient: String) {
         let addedIngredient = Ingredient(ingredient: ingredient)
         ingredients.append(addedIngredient)
     }
     
+    /// Removes ingredient from datasource
     func remove(ingredient: Ingredient) {
         guard let indexPath = ingredients.index(of: ingredient) else { return }
         ingredients.remove(at: indexPath)
     }
     
+    /// Edits an ingredients
     func edit(ingredient: Ingredient, ingredientString: String) {
         guard let indexPath = ingredients.index(of: ingredient) else { return }
         let updatedIngredient = Ingredient(ingredient: ingredientString)

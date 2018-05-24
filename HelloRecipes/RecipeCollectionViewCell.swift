@@ -22,32 +22,33 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         didSet {
             guard let urlString = myRecipe?.image else { return }
             
-            
             seperatorView.backgroundColor = uiColors.primary
             ingredientsTextField.layer.borderColor = uiColors.primary.cgColor
             recipeNameLabel.shadowColor = uiColors.primary
             sourceLabel.shadowColor = uiColors.primary
             
-            
             photoImageView.loadImage(urlString: urlString)
             recipeNameLabel.text = myRecipe?.label ?? ""
             sourceLabel.text = myRecipe?.source ?? ""
-            
             
             guard let recipeString =  myRecipe?.ingredientLines?.joined(separator: "\n •   ") else { return }
             let shadow = NSShadow()
             shadow.shadowColor = uiColors.primary
             shadow.shadowOffset = CGSize(width: 0.5, height: 0.5)
-            let attributedText = NSMutableAttributedString(string: "Ingredients: \n", attributes: [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                                                                   NSAttributedStringKey.shadow : shadow,
-                                                                                                   NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 35) as Any])
-            attributedText.append(NSAttributedString(string: "•    " + recipeString, attributes: [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                                                                    NSAttributedStringKey.shadow : shadow,
-                                                                                                    NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 16) as Any]))
+            let attributedText = NSMutableAttributedString(string: "Ingredients: \n", attributes: [
+                NSAttributedStringKey.foregroundColor : UIColor.white,
+                NSAttributedStringKey.shadow : shadow,
+                NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 35) as Any]
+            )
+            attributedText.append(NSAttributedString(string: "•    " + recipeString, attributes: [
+                NSAttributedStringKey.foregroundColor : UIColor.white,
+                NSAttributedStringKey.shadow : shadow,
+                NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 16) as Any
+                ]))
             ingredientsTextField.attributedText = attributedText
         }
     }
-        
+    
     // UI
     
     let photoImageView: CustomImageView = {

@@ -8,9 +8,10 @@
 
 import UIKit
 
+/// Model Controller for Recipes
 class RecipeController {
     
-    // MARK: - Method to fetch recipes with array of Ingredients
+    /// Method to fetch recipes with array of Ingredients
     static func fetchRecipes(with ingredients: [Ingredient], completion: @escaping (([MyRecipie]?)->Void)) {
         
         // url
@@ -54,7 +55,7 @@ class RecipeController {
             }.resume()
     }
     
-    // MARK: - Method to download Image with URL
+    /// Method to download Image with URL
     static func downloadImageWith(urlString: String, completion: @escaping ((UIImage?)->Void)) {
         
         // url

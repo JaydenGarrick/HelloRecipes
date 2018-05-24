@@ -21,9 +21,9 @@ class IngredientListTableViewCell: UITableViewCell {
     }
     
     // IBOutlets
-    @IBOutlet weak var backgroundShadowView: UIView! {
+    @IBOutlet weak var viewWithoutPadding: UIView! {
         didSet {
-            backgroundShadowView.backgroundColor = uiColors.secondary
+            viewWithoutPadding.backgroundColor = uiColors.secondary
         }
     }
     @IBOutlet weak var ingredientTextField: UITextField!
@@ -44,11 +44,11 @@ class IngredientListTableViewCell: UITableViewCell {
     // MARK: - SetupFunctions
     fileprivate func setupShadowView() {
         checkLabel.textColor = uiColors.primary
-        backgroundShadowView.backgroundColor = uiColors.secondary
-        backgroundShadowView.layer.cornerRadius = 3.0
-        backgroundShadowView.layer.masksToBounds = false
-        backgroundShadowView.layer.borderWidth = 0.75
-        backgroundShadowView.layer.borderColor = uiColors.primary.cgColor
+        viewWithoutPadding.backgroundColor = uiColors.secondary
+        viewWithoutPadding.layer.cornerRadius = 3.0
+        viewWithoutPadding.layer.masksToBounds = false
+        viewWithoutPadding.layer.borderWidth = 0.75
+        viewWithoutPadding.layer.borderColor = uiColors.primary.cgColor
     }
     
     fileprivate func setupLongPressGesture() {

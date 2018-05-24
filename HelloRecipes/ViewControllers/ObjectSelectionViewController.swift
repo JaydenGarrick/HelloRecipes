@@ -30,8 +30,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         return label
     }()
     
-    var selectedImage: UIImage? // Image that is being guess
-    
+    var selectedImage: UIImage? // Image that is being guessed on
     var guesses = [String]() // Datasource
     
     // MARK: - ViewLifeCycle
@@ -40,12 +39,17 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         setupCollectionView()
         setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageTapped), name: .selectedImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoTapped), name: .photoButtonTapped, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleColorChanged), name: .colorsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOnPhotoView), name: .onPhotoView, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOnPictureView), name: .onCameraView, object: nil)
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         guesses = [] // Clear out the guesses when the view dissapears
+        tapOnImageLabel.isHidden = false
     }
     
+    // MARK: - Setup Functions
     fileprivate func setupUI() {
         view.addSubview(tapOnImageLabel)
         tapOnImageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0)
@@ -66,6 +70,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         collectionView.showsHorizontalScrollIndicator = false
     }
     
+    // MARK: - Notification Functions
     @objc fileprivate func handleImageTapped(notification: Notification) {
         
         // Checking for image being tapped
@@ -93,7 +98,33 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
             try? VNImageRequestHandler(ciImage: ciImage).perform([request])
         }
     }
-
+    
+    @objc fileprivate func handlePhotoTapped(notification: Notification) {
+        if let guessesArray = notification.object as? [String] {
+            self.guesses = guessesArray
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                let indexPath = IndexPath(item: 0, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.left, animated: true)
+                self.setupUI()
+            }
+        }
+    }
+    
+    @objc fileprivate func handleColorChanged(notification: Notification) {
+        collectionView.reloadData()
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select an Image, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.backgroundColor = UIColor.uiColors.secondary
+        tapOnImageLabel.layer.borderColor = UIColor.uiColors.primary.cgColor
+    }
+    
+    @objc fileprivate func handleOnPhotoView(notification: Notification) {
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Take a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+    }
+    
+    @objc fileprivate func handleOnPictureView(notification: Notification) {
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+    }
 }
 
 // MARK: - CollectionView Delegate and Datasource Methods
@@ -111,7 +142,6 @@ extension ObjectSelectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: 210, height: view.frame.height - 5)
     }
     
@@ -124,9 +154,5 @@ extension ObjectSelectionViewController: UICollectionViewDelegateFlowLayout {
         IngredientController.shared.add(ingredient: object)
         performSegue(withIdentifier: "toRecipes", sender: self)
     }
-    
-
-
-    
     
 }

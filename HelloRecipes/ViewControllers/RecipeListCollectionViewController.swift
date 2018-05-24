@@ -13,7 +13,20 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
     // MARK: - Constants / Variables
     var uiColors = UIColor.uiColors
     fileprivate let cellID = "cellID"
-    var recipes = [MyRecipie]()
+    var recipes = [MyRecipie]() {
+        didSet {
+            if recipes.count > 0 {
+                DispatchQueue.main.async {
+                    self.seperatorView.isHidden = true
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.seperatorView.isHidden = true
+                    self.presentBadQueryAlert()
+                }
+            }
+        }
+    }
     
     let seperatorView: UIView = {
         let view = UIView()
@@ -39,7 +52,17 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
         setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setupActivityIndicator()
+    }
+    
     // MARK: - Setup Functions
+    fileprivate func setupActivityIndicator() {
+        if recipes.count > 0 {
+            activityIndicatior.isHidden = true
+        }
+    }
+    
     fileprivate func addConstraints() {
         view.addSubview(seperatorView)
         view.addSubview(activityIndicatior)
@@ -56,8 +79,8 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
             guard let fetchedRecipes = fetchedRecipes else { return }
             self?.recipes = fetchedRecipes
             DispatchQueue.main.async {
-                self?.collectionView?.reloadData()
                 self?.activityIndicatior.isHidden = true
+                self?.collectionView?.reloadData()
             }
         }
     }
@@ -67,9 +90,11 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.uiColors.primary
         shadow.shadowOffset = CGSize(width: 1, height: 1)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
-                                                                   NSAttributedStringKey.shadow : shadow,
-                                                                   NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.shadow : shadow,
+            NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any
+        ]
         navigationController?.navigationItem.title = "Hello Recipes"
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.backItem?.backBarButtonItem?.title = "<"
@@ -163,6 +188,19 @@ extension RecipeListCollectionViewController {
         return CATransform3DConcat(rotation, scale)
     }
     
+}
+
+// MARK: - Bad query alert
+extension RecipeListCollectionViewController {
+    func presentBadQueryAlert() {
+        let alertController = UIAlertController(title: "Whoops.. 😅", message: "Couldn't find any recipes with those ingredients. Adjust your list and try again!", preferredStyle: .alert)
+        alertController.view.tintColor = UIColor.uiColors.primary
+        let okayAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(okayAction)
+        present(alertController, animated: true)
+    }
 }
 
 

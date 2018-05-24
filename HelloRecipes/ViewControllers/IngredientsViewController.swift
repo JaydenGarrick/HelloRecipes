@@ -102,7 +102,6 @@ class IngredientsViewController: UIViewController {
         plusLabel.attributedText = NSAttributedString.stylizedTextWith("Pull to Add New Ingredient", shadowColor: UIColor.uiColors.primary, shadowOffSet: 1, mainTextColor: .white, textSize: CGFloat(labelFontSize))
         plusLabel.anchor(top: addRecipeRefreshControl.topAnchor, left: addRecipeRefreshControl.leftAnchor, bottom: nil, right: addRecipeRefreshControl.rightAnchor, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: listView.frame.width, height: addRecipeRefreshControl.frame.height)
         
-        
         // Set navigation Bar
         view.setupNavigationBarWith(viewController: self, primary: uiColors.primary, secondary: uiColors.secondary)
         
@@ -119,8 +118,6 @@ class IngredientsViewController: UIViewController {
         listView.backgroundColor = uiColors.secondary
         tableView.backgroundColor = uiColors.secondary
     }
-    
-    
     
     // MARK: - Action Functions
     @objc fileprivate func didPullForNewRecipe() {

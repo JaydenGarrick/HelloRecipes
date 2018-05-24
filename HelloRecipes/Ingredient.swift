@@ -15,3 +15,15 @@ struct Ingredient: Equatable {
         return lhs.ingredient == rhs.ingredient
     }
 }
+
+extension Collection where Element == Ingredient {
+    func toURLString() -> String {
+        var urlString = ""
+        for ingredient in self {
+            let noSpaces = ingredient.ingredient
+            urlString.append("\(noSpaces) ")
+        }
+        return urlString.replacingOccurrences(of: " ", with: "+").trimmingCharacters(in: CharacterSet.init(charactersIn: "+"))
+    }
+}
+
