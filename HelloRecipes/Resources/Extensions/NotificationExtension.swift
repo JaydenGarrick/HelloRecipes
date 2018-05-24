@@ -12,4 +12,6 @@ extension Notification.Name {
     static let selectedImage = NSNotification.Name("selectedImage")
     static let photoButtonTapped = NSNotification.Name("photoButtonTapped")
     static let colorsChanged = NSNotification.Name("colorsChanged")
+    static let onCameraView = NSNotification.Name("onCameraView")
+    static let onPhotoView = NSNotification.Name("onPhotoView")
 }

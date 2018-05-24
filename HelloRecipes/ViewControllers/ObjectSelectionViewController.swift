@@ -31,7 +31,6 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     }()
     
     var selectedImage: UIImage? // Image that is being guessed on
-    
     var guesses = [String]() // Datasource
     
     // MARK: - ViewLifeCycle
@@ -42,10 +41,12 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageTapped), name: .selectedImage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoTapped), name: .photoButtonTapped, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleColorChanged), name: .colorsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOnPhotoView), name: .onPhotoView, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOnPictureView), name: .onCameraView, object: nil)
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         guesses = [] // Clear out the guesses when the view dissapears
+        tapOnImageLabel.isHidden = false
     }
     
     // MARK: - Setup Functions
@@ -112,10 +113,18 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     
     @objc fileprivate func handleColorChanged(notification: Notification) {
         collectionView.reloadData()
-        print("working")
-        tapOnImageLabel.isHidden = false
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select an Image, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.backgroundColor = UIColor.uiColors.secondary
+        tapOnImageLabel.layer.borderColor = UIColor.uiColors.primary.cgColor
     }
-
+    
+    @objc fileprivate func handleOnPhotoView(notification: Notification) {
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Take a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+    }
+    
+    @objc fileprivate func handleOnPictureView(notification: Notification) {
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+    }
 }
 
 // MARK: - CollectionView Delegate and Datasource Methods

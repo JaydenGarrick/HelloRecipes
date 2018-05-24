@@ -15,7 +15,6 @@ class PhotoSelectorController: UICollectionViewController {
     let cellId = "cellId"
     
     var header: PhotoSelectorCell?
-    
     var images = [UIImage]()
     var selectedImage: UIImage?
     var assets = [PHAsset]()

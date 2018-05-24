@@ -69,10 +69,12 @@ extension UIColor {
     
     /// Function that will return a tuple of UI colors created in the Assets folder
     static func randomColorCombo() -> UIColorCombo {
-        let colorArray = [UIColor.darkYellow(),
-                          UIColor.darkPeach(),
-                          UIColor.darkGreen(),
-                          UIColor.darkBlue()]
+        let colorArray = [
+            UIColor.darkYellow(),
+            UIColor.darkPeach(),
+            UIColor.darkGreen(),
+            UIColor.darkBlue()
+        ]
         let randomIndex = Int(arc4random_uniform(UInt32(colorArray.count)))
         let randomPrimaryColor = colorArray[randomIndex]
         

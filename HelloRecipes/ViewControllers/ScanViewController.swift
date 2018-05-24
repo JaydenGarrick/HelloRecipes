@@ -71,6 +71,7 @@
             setupNavigationBar()
             setupSegmentedControl()
             setupCaptureButton()
+            objectSelectionView.isHidden = true
         }
         
         // MARK: - IBActions
@@ -83,6 +84,8 @@
             performSegue(withIdentifier: "toRecipes", sender: self)
         }
         
+        
+        // MARK: - Methods to handle which segmented index is active
         fileprivate func handleScanViews() {
             captureSession?.startRunning()
             captureButton.isHidden = true
@@ -98,6 +101,7 @@
         }
         
         fileprivate func handlePictureView() {
+            NotificationCenter.default.post(name: .onPhotoView, object: nil)
             captureButton.isHidden = false
             inferredObjectLabel.isHidden = true
             cameraRollView.isHidden = true
@@ -113,6 +117,7 @@
         }
         
         fileprivate func handleCameraRollView() {
+            NotificationCenter.default.post(name: .onCameraView, object: nil)
             captureButton.isHidden = true
             inferredObjectLabel.isHidden = true
             cameraRollView.isHidden = false
@@ -146,7 +151,7 @@
             segmentedController.layer.borderColor = uiColors.primary.cgColor
             segmentedController.layer.borderWidth = 1
             segmentedController.layer.cornerRadius = 5
-            objectSelectionView.isHidden = true
+//            objectSelectionView.isHidden = true
         }
         
         fileprivate func setColorsForUI() {
