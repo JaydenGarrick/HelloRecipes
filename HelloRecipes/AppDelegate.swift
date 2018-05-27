@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
-        let ingredients = [Ingredient(ingredient: "Chicken"), Ingredient(ingredient: "Broccoli"), Ingredient(ingredient: "Tomatos")]
-        IngredientController.shared.ingredients = ingredients
+//        let ingredients = [Ingredient(ingredient: "Chicken"), Ingredient(ingredient: "Broccoli"), Ingredient(ingredient: "Tomatos")]
+//        IngredientController.shared.ingredients = ingredients
         return true
     }
 
