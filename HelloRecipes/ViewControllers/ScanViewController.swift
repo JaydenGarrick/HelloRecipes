@@ -52,6 +52,7 @@
         @IBOutlet weak var navigationBarBorderView: UIView!
         @IBOutlet weak var objectSelectionView: UIView!
         @IBOutlet weak var buttonAndYesLabelStackView: UIStackView!
+        @IBOutlet weak var flashView: UIView!
         
         // Constraint Outlets
         @IBOutlet weak var segmentedControllerBottomConstraint: NSLayoutConstraint!
@@ -88,6 +89,7 @@
         // MARK: - Action Functions
         @objc func captureButtonTapped() {
             if captureSession?.isRunning == true {
+                toggleFlash()
                 NotificationCenter.default.post(name: NSNotification.Name.photoButtonTapped, object: guessResultForCameraTapped, userInfo: nil)
                 let attributedButtonString = NSAttributedString.stylizedTextWith("⃝", shadowColor: uiColors.primary, shadowOffSet: 1.5, mainTextColor: uiColors.secondary, textSize: 60)
                 captureButton.setAttributedTitle(attributedButtonString, for: .normal)
@@ -96,6 +98,13 @@
                 captureSession?.startRunning()
                 let attributedButtonString = NSAttributedString.stylizedTextWith("◉", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 70)
                 captureButton.setAttributedTitle(attributedButtonString, for: .normal)
+            }
+        }
+        
+        func toggleFlash() {
+            flashView.isHidden = false
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] (_) in
+                self?.flashView.isHidden = true
             }
         }
         

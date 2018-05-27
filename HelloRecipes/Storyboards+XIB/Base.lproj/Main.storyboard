@@ -77,6 +77,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siE-WB-bUD" userLabel="FlashView">
+                                <rect key="frame" x="5" y="147" width="365" height="425.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aep-OJ-1aJ" userLabel="CameraRollview">
                                 <rect key="frame" x="5" y="147" width="365" height="425.5"/>
                                 <subviews>
@@ -147,9 +151,12 @@
                             <constraint firstItem="Aep-OJ-1aJ" firstAttribute="bottom" secondItem="avv-pC-FR4" secondAttribute="bottom" id="GvK-8V-oYR"/>
                             <constraint firstItem="Aep-OJ-1aJ" firstAttribute="top" secondItem="CJh-Oh-ALO" secondAttribute="bottom" constant="4" id="IFz-HO-bCa"/>
                             <constraint firstItem="avv-pC-FR4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="J1t-nu-Ev6"/>
+                            <constraint firstItem="siE-WB-bUD" firstAttribute="top" secondItem="avv-pC-FR4" secondAttribute="top" id="KSz-Ce-dqR"/>
                             <constraint firstItem="C0M-xY-Y7i" firstAttribute="top" secondItem="avv-pC-FR4" secondAttribute="bottom" constant="8" id="Kon-Te-0SR"/>
                             <constraint firstItem="0s3-Kx-bgP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mpw-i3-Aqg"/>
                             <constraint firstItem="avv-pC-FR4" firstAttribute="top" secondItem="CJh-Oh-ALO" secondAttribute="bottom" constant="4" id="ODV-oA-PgZ"/>
+                            <constraint firstItem="siE-WB-bUD" firstAttribute="leading" secondItem="avv-pC-FR4" secondAttribute="leading" id="Qds-ZU-P2k"/>
+                            <constraint firstItem="siE-WB-bUD" firstAttribute="trailing" secondItem="avv-pC-FR4" secondAttribute="trailing" id="Skj-JY-sGW"/>
                             <constraint firstItem="0s3-Kx-bgP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YIF-bN-Gfd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CJh-Oh-ALO" secondAttribute="trailing" constant="5" id="Yvz-3f-Nrt"/>
                             <constraint firstItem="CJh-Oh-ALO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0s3-Kx-bgP" secondAttribute="bottom" constant="50" id="b9D-xb-B6K"/>
@@ -160,6 +167,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rhb-u9-M8n" secondAttribute="trailing" id="ljk-VN-E38"/>
                             <constraint firstItem="C0M-xY-Y7i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="pof-F8-OWU"/>
                             <constraint firstItem="CJh-Oh-ALO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="q3T-lH-w7B"/>
+                            <constraint firstItem="siE-WB-bUD" firstAttribute="bottom" secondItem="avv-pC-FR4" secondAttribute="bottom" id="r6l-Fv-kDX"/>
                             <constraint firstItem="UPF-Is-3EM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="tte-20-WGe"/>
                             <constraint firstItem="0s3-Kx-bgP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vo2-Wp-BJO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UPF-Is-3EM" secondAttribute="trailing" constant="6" id="wX7-XI-mTa"/>
@@ -181,6 +189,7 @@
                         <outlet property="amIRightLabel" destination="hJh-VE-mNK" id="3pe-dE-mWd"/>
                         <outlet property="buttonAndYesLabelStackView" destination="C0M-xY-Y7i" id="KEH-uQ-qed"/>
                         <outlet property="cameraRollView" destination="Aep-OJ-1aJ" id="8f2-J5-qVa"/>
+                        <outlet property="flashView" destination="siE-WB-bUD" id="U6I-Q6-pWT"/>
                         <outlet property="inferredObjectLabel" destination="UPF-Is-3EM" id="v0h-UW-TbO"/>
                         <outlet property="navigationBarBorderView" destination="0s3-Kx-bgP" id="T6y-GA-Xai"/>
                         <outlet property="objectSelectionView" destination="Rhb-u9-M8n" id="EtU-px-0a0"/>
@@ -460,16 +469,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" id="LpV-Pi-Ydt">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="BSX-Rx-XSY" id="bbK-Ss-dKB"/>
                             <outlet property="delegate" destination="BSX-Rx-XSY" id="7Pf-NB-Qkc"/>
@@ -497,16 +497,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellID" id="akJ-sk-M6E" customClass="ObjectSelectionCell" customModule="HelloRecipes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -526,21 +517,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ga3-d2-5D3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1051" y="661"/>
-        </scene>
-        <!--Camera View Controller-->
-        <scene sceneID="Xdq-q1-Yhy">
-            <objects>
-                <viewController id="fEG-oP-JLd" customClass="CameraViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Py3-nR-8Sv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="uJk-qc-AYx"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oad-di-P1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2053.6231884057975" y="727.58152173913049"/>
         </scene>
     </scenes>
     <resources>
