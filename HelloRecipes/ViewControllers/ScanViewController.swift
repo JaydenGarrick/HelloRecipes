@@ -5,7 +5,6 @@
     //  Created by Jayden Garrick on 3/24/18.
     //  Copyright © 2018 Jayden Garrick. All rights reserved.
     //
-    
     import UIKit
     import AVKit
     import Vision
@@ -21,7 +20,7 @@
             }
         }
         
-        // AV Constants
+        // AV Constants and variables
         var captureSession: AVCaptureSession?
         
         let captureButton: UIButton = {
@@ -32,15 +31,10 @@
             return button
         }()
         
-        let flashView: UIView = {
-            let view = UIView()
-            return view
-        }()
-        
         // IBOutlets
         @IBOutlet weak var scannerView: UIView! {
             didSet {
-                scannerView.backgroundColor = .red
+                scannerView.backgroundColor = .white
                 scannerView.layer.cornerRadius = 5
                 scannerView.layer.borderWidth = 1
             }
@@ -77,7 +71,7 @@
             setupCamera()
             setupNavigationBar()
             setupSegmentedControl()
-            setupCaptureButton()
+            setupProgramaticConstraints()
             objectSelectionView.isHidden = true
         }
         
@@ -214,23 +208,26 @@
             captureSession?.addInput(input)
             captureSession?.startRunning()
             
+            // PreviewLayer
             let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             scannerView.layer.addSublayer(previewLayer)
             previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.bounds.width + 45, height: scannerView.layer.frame.height + 100)
-            
             previewLayer.layoutIfNeeded()
             
+            // DataOutput
             let dataOutput = AVCaptureVideoDataOutput()
             dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
             captureSession?.addOutput(dataOutput)
         }
         
-        func setupCaptureButton() {
+        func setupProgramaticConstraints() {
             view.addSubview(captureButton)
+            // captureButton
             captureButton.anchor(top: nil, left: scannerView.leftAnchor, bottom: scannerView.bottomAnchor, right: scannerView.rightAnchor, paddingTop: 0, paddingLeft: 40, paddingBottom: 20, paddingRight: 40, width: 40, height: 40)
             
             captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
+            
         }
         
         // MARK: - Navigation Bar
