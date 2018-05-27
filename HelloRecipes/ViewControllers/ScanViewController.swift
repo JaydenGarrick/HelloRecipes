@@ -5,7 +5,6 @@
     //  Created by Jayden Garrick on 3/24/18.
     //  Copyright © 2018 Jayden Garrick. All rights reserved.
     //
-    
     import UIKit
     import AVKit
     import Vision
@@ -15,11 +14,13 @@
         // MARK: - Constants and Variables
         var guessResultForCameraTapped = [String]()
         
-        var uiColors = UIColor.uiColors {
+        var uiColors = UIColor.uiColors { // Colors for UI
             didSet {
                 UIColor.uiColors = uiColors
             }
         }
+        
+        // AV Constants and variables
         var captureSession: AVCaptureSession?
         
         let captureButton: UIButton = {
@@ -33,7 +34,7 @@
         // IBOutlets
         @IBOutlet weak var scannerView: UIView! {
             didSet {
-                scannerView.backgroundColor = .red
+                scannerView.backgroundColor = .white
                 scannerView.layer.cornerRadius = 5
                 scannerView.layer.borderWidth = 1
             }
@@ -51,6 +52,7 @@
         @IBOutlet weak var navigationBarBorderView: UIView!
         @IBOutlet weak var objectSelectionView: UIView!
         @IBOutlet weak var buttonAndYesLabelStackView: UIStackView!
+        @IBOutlet weak var flashView: UIView!
         
         // Constraint Outlets
         @IBOutlet weak var segmentedControllerBottomConstraint: NSLayoutConstraint!
@@ -70,7 +72,7 @@
             setupCamera()
             setupNavigationBar()
             setupSegmentedControl()
-            setupCaptureButton()
+            setupProgramaticConstraints()
             objectSelectionView.isHidden = true
         }
         
@@ -84,6 +86,47 @@
             performSegue(withIdentifier: "toRecipes", sender: self)
         }
         
+        // MARK: - Action Functions
+        @objc func captureButtonTapped() {
+            if captureSession?.isRunning == true {
+                toggleFlash()
+                NotificationCenter.default.post(name: NSNotification.Name.photoButtonTapped, object: guessResultForCameraTapped, userInfo: nil)
+                let attributedButtonString = NSAttributedString.stylizedTextWith("⃝", shadowColor: uiColors.primary, shadowOffSet: 1.5, mainTextColor: uiColors.secondary, textSize: 60)
+                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
+                captureSession?.stopRunning()
+            } else {
+                captureSession?.startRunning()
+                let attributedButtonString = NSAttributedString.stylizedTextWith("◉", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 70)
+                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
+            }
+        }
+        
+        func toggleFlash() {
+            flashView.isHidden = false
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] (_) in
+                self?.flashView.isHidden = true
+            }
+        }
+        
+        @objc func changeUIColors() {
+            let lastUsedColor = uiColors.primary
+            uiColors = UIColor.randomColorCombo() as (primary: UIColor, secondary: UIColor)
+            if uiColors.primary == lastUsedColor {
+                changeUIColors()
+            }
+            if captureSession?.isRunning == true {
+                let attributedButtonString = NSAttributedString.stylizedTextWith("◉", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 70)
+                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
+            } else {
+                let attributedButtonString = NSAttributedString.stylizedTextWith("⃝", shadowColor: uiColors.primary, shadowOffSet: 1.5, mainTextColor: uiColors.secondary, textSize: 60)
+                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
+            }
+            setupNavigationBar()
+            setupSegmentedControl()
+            setColorsForUI()
+            
+            NotificationCenter.default.post(name: .colorsChanged, object: nil)
+        }
         
         // MARK: - Methods to handle which segmented index is active
         fileprivate func handleScanViews() {
@@ -174,36 +217,26 @@
             captureSession?.addInput(input)
             captureSession?.startRunning()
             
+            // PreviewLayer
             let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             scannerView.layer.addSublayer(previewLayer)
             previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.bounds.width + 45, height: scannerView.layer.frame.height + 100)
-            
             previewLayer.layoutIfNeeded()
             
+            // DataOutput
             let dataOutput = AVCaptureVideoDataOutput()
             dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
             captureSession?.addOutput(dataOutput)
         }
         
-        func setupCaptureButton() {
+        func setupProgramaticConstraints() {
             view.addSubview(captureButton)
+            // captureButton
             captureButton.anchor(top: nil, left: scannerView.leftAnchor, bottom: scannerView.bottomAnchor, right: scannerView.rightAnchor, paddingTop: 0, paddingLeft: 40, paddingBottom: 20, paddingRight: 40, width: 40, height: 40)
             
             captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
-        }
-        
-        @objc func captureButtonTapped() {
-            if captureSession?.isRunning == true {
-                NotificationCenter.default.post(name: NSNotification.Name.photoButtonTapped, object: guessResultForCameraTapped, userInfo: nil)
-                let attributedButtonString = NSAttributedString.stylizedTextWith("⃝", shadowColor: uiColors.primary, shadowOffSet: 1.5, mainTextColor: uiColors.secondary, textSize: 60)
-                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
-                captureSession?.stopRunning()
-            } else {
-                captureSession?.startRunning()
-                let attributedButtonString = NSAttributedString.stylizedTextWith("◉", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 70)
-                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
-            }
+            
         }
         
         // MARK: - Navigation Bar
@@ -218,27 +251,6 @@
             navigationController?.navigationBar.addSubview(navView)
         }
         
-        @objc func changeUIColors() {
-            let lastUsedColor = uiColors.primary
-            uiColors = UIColor.randomColorCombo() as (primary: UIColor, secondary: UIColor)
-            if uiColors.primary == lastUsedColor {
-                changeUIColors()
-            }
-            
-            if captureSession?.isRunning == true {
-                let attributedButtonString = NSAttributedString.stylizedTextWith("◉", shadowColor: uiColors.primary, shadowOffSet: 2, mainTextColor: uiColors.secondary, textSize: 70)
-                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
-            } else {
-                let attributedButtonString = NSAttributedString.stylizedTextWith("⃝", shadowColor: uiColors.primary, shadowOffSet: 1.5, mainTextColor: uiColors.secondary, textSize: 60)
-                captureButton.setAttributedTitle(attributedButtonString, for: .normal)
-            }
-            
-            setupNavigationBar()
-            setupSegmentedControl()
-            setColorsForUI()
-            
-            NotificationCenter.default.post(name: .colorsChanged, object: nil)
-        }
         
     }
     

@@ -45,6 +45,23 @@ class IngredientsViewController: UIViewController {
         return label
     }()
     
+    let noIngredientsLabel: UILabel = {
+        let noIngredientsLabel = UILabel()
+        noIngredientsLabel.attributedText = NSAttributedString.stylizedTextWith(
+            "You currently have 0 ingredients gathered. \n Pull, Scan, Snap, or Tap to add more Ingredients!",
+            shadowColor: UIColor.uiColors.primary,
+            shadowOffSet: 1, mainTextColor: .white,
+            textSize: 15
+        )
+        noIngredientsLabel.minimumScaleFactor = 15
+        noIngredientsLabel.textAlignment = .center
+        noIngredientsLabel.numberOfLines = 0
+        noIngredientsLabel.layer.cornerRadius = 5
+        noIngredientsLabel.layer.borderWidth = 1
+        noIngredientsLabel.layer.borderColor = UIColor.uiColors.primary.cgColor
+        return noIngredientsLabel
+    }()
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +134,11 @@ class IngredientsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = uiColors.secondary
         listView.backgroundColor = uiColors.secondary
         tableView.backgroundColor = uiColors.secondary
+        
+        if IngredientController.shared.ingredients.isEmpty {
+            doneFindingIngredientsButton.isHidden = true
+            doneFindingIngredientsLabel.isHidden = true
+        }
     }
     
     // MARK: - Action Functions
@@ -132,8 +154,12 @@ class IngredientsViewController: UIViewController {
         if IngredientController.shared.ingredients.count > 1 { // Check to see if there's any ingredients already. if there is, scroll to bottom.
             scrollToBottom { [weak self] in
                 self?.addNewIngredientOnRefresh()
+                self?.doneFindingIngredientsButton.isHidden = false
+                self?.doneFindingIngredientsLabel.isHidden = false
             }
         } else {
+            doneFindingIngredientsButton.isHidden = false
+            doneFindingIngredientsLabel.isHidden = false
             addNewIngredientOnRefresh()
         }
     }
@@ -206,6 +232,25 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
         deleteIngredientAction.backgroundColor = uiColors.primary
         let configuration = UISwipeActionsConfiguration(actions: [deleteIngredientAction])
         return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if IngredientController.shared.ingredients.count == 0 {
+            // Setup headerView
+            let headerView = UIView()
+            headerView.backgroundColor = .clear
+            // Constraints
+            headerView.addSubview(noIngredientsLabel)
+            noIngredientsLabel.anchor(top: headerView.topAnchor, left: headerView.leftAnchor, bottom: headerView.bottomAnchor, right: headerView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: headerView.bounds.width - 8, height: headerView.bounds.height - 8)
+            return headerView
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if IngredientController.shared.ingredients.isEmpty {
+            return 125
+        } else { return 0 }
     }
     
 }
