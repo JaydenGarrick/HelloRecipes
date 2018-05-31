@@ -234,9 +234,7 @@
             view.addSubview(captureButton)
             // captureButton
             captureButton.anchor(top: nil, left: scannerView.leftAnchor, bottom: scannerView.bottomAnchor, right: scannerView.rightAnchor, paddingTop: 0, paddingLeft: 40, paddingBottom: 20, paddingRight: 40, width: 40, height: 40)
-            
             captureButton.addTarget(self, action: #selector(captureButtonTapped), for: .touchUpInside)
-            
         }
         
         // MARK: - Navigation Bar
@@ -250,7 +248,6 @@
             navView.addGestureRecognizer(tapGesture)
             navigationController?.navigationBar.addSubview(navView)
         }
-        
         
     }
     

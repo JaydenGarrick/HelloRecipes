@@ -34,6 +34,7 @@
 		81DBD4D52067348700944B8A /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DBD4D42067348700944B8A /* RecipeController.swift */; };
 		81F5CE42207D420300B89A24 /* ObjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F5CE41207D420300B89A24 /* ObjectSelectionViewController.swift */; };
 		81F5CE44207D435100B89A24 /* ObjectSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F5CE43207D435100B89A24 /* ObjectSelectionCell.swift */; };
+		81F7B00E20BCB5AC0096C5D4 /* SignPainter HouseScript Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81F7B00D20BCB5AB0096C5D4 /* SignPainter HouseScript Regular.ttf */; };
 		A16A17B8FEA038D5058BD6A7 /* Pods_HelloRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6F68BA6ED3C1430BB965E9 /* Pods_HelloRecipes.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		81DBD4D42067348700944B8A /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 		81F5CE41207D420300B89A24 /* ObjectSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectionViewController.swift; sourceTree = "<group>"; };
 		81F5CE43207D435100B89A24 /* ObjectSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectionCell.swift; sourceTree = "<group>"; };
+		81F7B00D20BCB5AB0096C5D4 /* SignPainter HouseScript Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter HouseScript Regular.ttf"; sourceTree = "<group>"; };
 		D47BBEBD1D80FE2F467CF2CC /* Pods-HelloRecipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloRecipes.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloRecipes/Pods-HelloRecipes.release.xcconfig"; sourceTree = "<group>"; };
 		D9571EBE736CB4C0BE8D69B8 /* Pods-HelloRecipes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloRecipes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloRecipes/Pods-HelloRecipes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 			children = (
 				81330F5B2079C9C800C418A9 /* Assets.xcassets */,
 				81C963DD2066F7A300B6AA0D /* Info.plist */,
+				81F7B00F20BCB5B10096C5D4 /* Fonts */,
 				817854F820AB8A3300A8F491 /* Extensions */,
 				8178550220AB8B4A00A8F491 /* SubClasses */,
 			);
@@ -208,6 +211,14 @@
 				81F5CE43207D435100B89A24 /* ObjectSelectionCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		81F7B00F20BCB5B10096C5D4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				81F7B00D20BCB5AB0096C5D4 /* SignPainter HouseScript Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A44829B35C519B82DBA736A4 /* Pods */ = {
@@ -282,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C963DC2066F7A300B6AA0D /* LaunchScreen.storyboard in Resources */,
+				81F7B00E20BCB5AC0096C5D4 /* SignPainter HouseScript Regular.ttf in Resources */,
 				81C963D72066F7A300B6AA0D /* Main.storyboard in Resources */,
 				81330F5C2079C9C800C418A9 /* Assets.xcassets in Resources */,
 				816F14D9207449BF009C9016 /* RecipeCell.xib in Resources */,
