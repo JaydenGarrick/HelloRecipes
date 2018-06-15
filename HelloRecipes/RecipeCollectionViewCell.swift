@@ -50,7 +50,6 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     }
     
     // UI
-    
     let photoImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
@@ -148,7 +147,6 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         seperatorView.anchor(top: recipeNameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 5, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 1)
         sourceLabel.anchor(top: seperatorView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 18)
         ingredientsTextField.anchor(top: sourceLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 20, paddingBottom: 8, paddingRight: 20, width: 0, height: 200)
-        
     }
     
 }

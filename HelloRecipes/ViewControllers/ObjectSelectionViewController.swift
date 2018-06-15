@@ -78,7 +78,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
             selectedImage = image
         
             // Creating model for CoreML
-            guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
+            guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
             
             // Getting the request
             let request = VNCoreMLRequest(model: model) { (request, error) in

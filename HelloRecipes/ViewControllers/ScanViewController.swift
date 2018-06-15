@@ -46,7 +46,11 @@
         }
         @IBOutlet weak var amIRightLabel: UILabel!
         @IBOutlet weak var segmentedController: UISegmentedControl!
-        @IBOutlet weak var inferredObjectLabel: UILabel!
+        @IBOutlet weak var inferredObjectLabel: UILabel! {
+            didSet {
+                print(inferredObjectLabel.text ?? "")
+            }
+        }
         @IBOutlet weak var recipesBarButtonItem: UIBarButtonItem!
         @IBOutlet weak var yesButton: UIButton!
         @IBOutlet weak var navigationBarBorderView: UIView!
@@ -182,7 +186,6 @@
                 } else if self.segmentedController.selectedSegmentIndex == 2 {
                     self.handleCameraRollView()
                 }
-                
             })
         }
         // MARK: - Setup Functions
@@ -255,7 +258,7 @@
     extension ScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
             guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-            guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
+            guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
             let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
                 guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
                 self.guessResultForCameraTapped = results.compactMap { $0.identifier }

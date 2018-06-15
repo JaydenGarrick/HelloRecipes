@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		81330F5C2079C9C800C418A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81330F5B2079C9C800C418A9 /* Assets.xcassets */; };
 		8145127F2079A8EA00E7161C /* StretchingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145127E2079A8EA00E7161C /* StretchingTableView.swift */; };
-		816F14D72074469A009C9016 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 816F14D62074469A009C9016 /* Inceptionv3.mlmodel */; };
 		816F14D9207449BF009C9016 /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816F14D8207449BF009C9016 /* RecipeCell.xib */; };
 		816F14DB2074523E009C9016 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F14DA2074523E009C9016 /* RecipeCollectionViewCell.swift */; };
 		816F14DD2074548F009C9016 /* RecipeListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F14DC2074548F009C9016 /* RecipeListCollectionViewController.swift */; };
@@ -18,6 +17,7 @@
 		817854FD20AB8AA000A8F491 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817854FC20AB8AA000A8F491 /* UIColorExtension.swift */; };
 		817854FF20AB8AED00A8F491 /* NSAttributeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817854FE20AB8AED00A8F491 /* NSAttributeStringExtension.swift */; };
 		8178550120AB8B1B00A8F491 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178550020AB8B1B00A8F491 /* NotificationExtension.swift */; };
+		818128CD20D1C69C007BAC93 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 818128CC20D1C69C007BAC93 /* Resnet50.mlmodel */; };
 		81907A9620718E9A00DD2FE0 /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81907A9520718E9A00DD2FE0 /* CameraRollViewController.swift */; };
 		81907A9820718F3400DD2FE0 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81907A9720718F3400DD2FE0 /* PhotoSelectorCell.swift */; };
 		81C963D22066F7A300B6AA0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C963D12066F7A300B6AA0D /* AppDelegate.swift */; };
@@ -42,7 +42,6 @@
 		2C6F68BA6ED3C1430BB965E9 /* Pods_HelloRecipes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloRecipes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81330F5B2079C9C800C418A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8145127E2079A8EA00E7161C /* StretchingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingTableView.swift; sourceTree = "<group>"; };
-		816F14D62074469A009C9016 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		816F14D8207449BF009C9016 /* RecipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCell.xib; sourceTree = "<group>"; };
 		816F14DA2074523E009C9016 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		816F14DC2074548F009C9016 /* RecipeListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListCollectionViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		817854FC20AB8AA000A8F491 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		817854FE20AB8AED00A8F491 /* NSAttributeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributeStringExtension.swift; sourceTree = "<group>"; };
 		8178550020AB8B1B00A8F491 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
+		818128CC20D1C69C007BAC93 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 		81907A9520718E9A00DD2FE0 /* CameraRollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
 		81907A9720718F3400DD2FE0 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		81C963CE2066F7A300B6AA0D /* HelloRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,7 +130,6 @@
 			children = (
 				81C963D12066F7A300B6AA0D /* AppDelegate.swift */,
 				81DBD4CA206710B400944B8A /* ModelControllers */,
-				81C963EA2066FC8D00B6AA0D /* Models */,
 				81DBD4CF2067210A00944B8A /* Views */,
 				81C963E92066F9C300B6AA0D /* ViewControllers */,
 				81C963E62066F99B00B6AA0D /* Storyboards+XIB */,
@@ -177,11 +176,12 @@
 		81C963EA2066FC8D00B6AA0D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				816F14D62074469A009C9016 /* Inceptionv3.mlmodel */,
+				818128CC20D1C69C007BAC93 /* Resnet50.mlmodel */,
 				81DBD4C6206710A600944B8A /* Ingredient.swift */,
 				81DBD4D22067347200944B8A /* Recipe.swift */,
 			);
 			name = Models;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		81C963F3206706DB00B6AA0D /* Frameworks */ = {
@@ -198,6 +198,7 @@
 			children = (
 				81DBD4C8206710AF00944B8A /* IngredientController.swift */,
 				81DBD4D42067348700944B8A /* RecipeController.swift */,
+				81C963EA2066FC8D00B6AA0D /* Models */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -366,7 +367,6 @@
 				81DBD4C9206710AF00944B8A /* IngredientController.swift in Sources */,
 				81F5CE42207D420300B89A24 /* ObjectSelectionViewController.swift in Sources */,
 				8145127F2079A8EA00E7161C /* StretchingTableView.swift in Sources */,
-				816F14D72074469A009C9016 /* Inceptionv3.mlmodel in Sources */,
 				81F5CE44207D435100B89A24 /* ObjectSelectionCell.swift in Sources */,
 				816F14DB2074523E009C9016 /* RecipeCollectionViewCell.swift in Sources */,
 				816F14EA20757686009C9016 /* CustomImageView.swift in Sources */,
@@ -374,6 +374,7 @@
 				81DBD4C52067108F00944B8A /* IngredientsViewController.swift in Sources */,
 				81DBD4D52067348700944B8A /* RecipeController.swift in Sources */,
 				817854FA20AB8A4800A8F491 /* UIViewExtension.swift in Sources */,
+				818128CD20D1C69C007BAC93 /* Resnet50.mlmodel in Sources */,
 				8178550120AB8B1B00A8F491 /* NotificationExtension.swift in Sources */,
 				81907A9620718E9A00DD2FE0 /* CameraRollViewController.swift in Sources */,
 				816F14DD2074548F009C9016 /* RecipeListCollectionViewController.swift in Sources */,

@@ -15,13 +15,9 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
     fileprivate let cellID = "cellID"
     var recipes = [MyRecipie]() {
         didSet {
-            if recipes.count > 0 {
+            if recipes.count == 0 {
                 DispatchQueue.main.async {
-                    self.seperatorView.isHidden = true
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.seperatorView.isHidden = true
+                    self.activityIndicatior.isHidden = true
                     self.presentBadQueryAlert()
                 }
             }
@@ -58,9 +54,9 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
     
     // MARK: - Setup Functions
     fileprivate func setupActivityIndicator() {
-        if recipes.count > 0 {
+//        if recipes.count > 0 {
             activityIndicatior.isHidden = true
-        }
+//        }
     }
     
     fileprivate func addConstraints() {
@@ -111,7 +107,6 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
 
 // MARK: - CollectionView Delegate and Datasourcec Functions
 extension RecipeListCollectionViewController {
-    
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipes.count
