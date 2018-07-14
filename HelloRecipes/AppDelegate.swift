@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Keyboard manager pod
+        IQKeyboardManager.sharedManager().enable = true
+        
         UIApplication.shared.statusBarStyle = .lightContent
         let ingredients = [Ingredient(ingredient: "Steak"), Ingredient(ingredient: "Potatos"), Ingredient(ingredient: "Mushroom")]
         IngredientController.shared.ingredients = ingredients

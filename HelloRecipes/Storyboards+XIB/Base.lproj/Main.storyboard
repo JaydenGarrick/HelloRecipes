@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(inferred Object)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UPF-Is-3EM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanning..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UPF-Is-3EM">
                                 <rect key="frame" x="5" y="64" width="364" height="53"/>
                                 <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="30"/>
                                 <color key="textColor" red="0.80392156862745101" green="0.5607843137254902" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -264,7 +264,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-Mv-Ffo">
                                                             <rect key="frame" x="25" y="24" width="250" height="21"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
                                                             <state key="normal" title="Find Recipes!">
                                                                 <color key="titleColor" name="DarkGreen"/>
                                                             </state>
@@ -422,7 +422,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCq-Fm-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813.0434782608697" y="31.793478260869566"/>
+            <point key="canvasLocation" x="1849" y="51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nSk-eI-OKl">
@@ -507,7 +507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ga3-d2-5D3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051" y="661"/>
+            <point key="canvasLocation" x="1062" y="636"/>
         </scene>
     </scenes>
     <resources>

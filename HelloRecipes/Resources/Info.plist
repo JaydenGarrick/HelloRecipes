@@ -56,7 +56,7 @@
 	<string>Hello Recipe uses your photos to detect food for recipes! 🍌🍐🍅🥒🥑</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SignPainter HouseScript Regular.ttf</string>
+		<string>SignPainter-HouseScript-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

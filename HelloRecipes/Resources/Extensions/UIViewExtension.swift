@@ -40,7 +40,7 @@ extension UIView {
         viewController.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor : UIColor.white,
             NSAttributedStringKey.shadow : shadow,
-            NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any
+            NSAttributedStringKey.font : UIFont.signPainterFont(ofSize: 40)
         ]
     }
 }

@@ -17,7 +17,6 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
         didSet {
             if recipes.count == 0 {
                 DispatchQueue.main.async {
-                    self.activityIndicatior.isHidden = true
                     self.presentBadQueryAlert()
                 }
             }
@@ -48,15 +47,17 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
         setupCollectionView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        setupActivityIndicator()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupActivityIndicatorWhenAppeared()
     }
     
     // MARK: - Setup Functions
-    fileprivate func setupActivityIndicator() {
-//        if recipes.count > 0 {
+    fileprivate func setupActivityIndicatorWhenAppeared() {
+        if recipes.count > 0 {
+            activityIndicatior.stopAnimating()
             activityIndicatior.isHidden = true
-//        }
+        }
     }
     
     fileprivate func addConstraints() {
@@ -82,18 +83,7 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
     }
     
     fileprivate func setupNavigationBar() {
-        navigationController?.navigationBar.tintColor = uiColors.primary
-        let shadow = NSShadow()
-        shadow.shadowColor = UIColor.uiColors.primary
-        shadow.shadowOffset = CGSize(width: 1, height: 1)
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor : UIColor.white,
-            NSAttributedStringKey.shadow : shadow,
-            NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any
-        ]
-        navigationController?.navigationItem.title = "Hello Recipes"
-        navigationController?.view.backgroundColor = .clear
-        navigationController?.navigationBar.backItem?.backBarButtonItem?.title = "<"
+        view.setupNavigationBarWith(viewController: self, primary: UIColor.uiColors.primary, secondary: UIColor.uiColors.secondary)
     }
     
     fileprivate func setupCollectionView() {
@@ -163,12 +153,13 @@ extension RecipeListCollectionViewController {
             }
         }
     }
+    
     func animateCell(cellFrame: CGRect) -> CATransform3D {
-        let angleFromX = Double((-cellFrame.origin.x) / 10)
+        let angleFromX = Double((-cellFrame.origin.x) / 16.5)
         let angle = CGFloat((angleFromX * Double.pi) / 180.0)
         var transform = CATransform3DIdentity
-        transform.m34 = -1.0/1000
-        let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
+        transform.m34 = -1.0/900
+        let rotation = CATransform3DRotate(transform, angle, 0, 0.5, 0)
         
         var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
         let scaleMax: CGFloat = 1.0

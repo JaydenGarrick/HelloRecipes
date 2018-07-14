@@ -18,6 +18,7 @@
 		817854FF20AB8AED00A8F491 /* NSAttributeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817854FE20AB8AED00A8F491 /* NSAttributeStringExtension.swift */; };
 		8178550120AB8B1B00A8F491 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8178550020AB8B1B00A8F491 /* NotificationExtension.swift */; };
 		818128CD20D1C69C007BAC93 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 818128CC20D1C69C007BAC93 /* Resnet50.mlmodel */; };
+		8186C62A20E4428000B4DD24 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8186C62920E4428000B4DD24 /* UIFontExtension.swift */; };
 		81907A9620718E9A00DD2FE0 /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81907A9520718E9A00DD2FE0 /* CameraRollViewController.swift */; };
 		81907A9820718F3400DD2FE0 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81907A9720718F3400DD2FE0 /* PhotoSelectorCell.swift */; };
 		81C963D22066F7A300B6AA0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C963D12066F7A300B6AA0D /* AppDelegate.swift */; };
@@ -34,7 +35,7 @@
 		81DBD4D52067348700944B8A /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DBD4D42067348700944B8A /* RecipeController.swift */; };
 		81F5CE42207D420300B89A24 /* ObjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F5CE41207D420300B89A24 /* ObjectSelectionViewController.swift */; };
 		81F5CE44207D435100B89A24 /* ObjectSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F5CE43207D435100B89A24 /* ObjectSelectionCell.swift */; };
-		81F7B00E20BCB5AC0096C5D4 /* SignPainter HouseScript Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81F7B00D20BCB5AB0096C5D4 /* SignPainter HouseScript Regular.ttf */; };
+		81F7B00E20BCB5AC0096C5D4 /* SignPainter-HouseScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81F7B00D20BCB5AB0096C5D4 /* SignPainter-HouseScript-Regular.ttf */; };
 		A16A17B8FEA038D5058BD6A7 /* Pods_HelloRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6F68BA6ED3C1430BB965E9 /* Pods_HelloRecipes.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		817854FE20AB8AED00A8F491 /* NSAttributeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributeStringExtension.swift; sourceTree = "<group>"; };
 		8178550020AB8B1B00A8F491 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		818128CC20D1C69C007BAC93 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		8186C62920E4428000B4DD24 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		81907A9520718E9A00DD2FE0 /* CameraRollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
 		81907A9720718F3400DD2FE0 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		81C963CE2066F7A300B6AA0D /* HelloRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +71,7 @@
 		81DBD4D42067348700944B8A /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 		81F5CE41207D420300B89A24 /* ObjectSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectionViewController.swift; sourceTree = "<group>"; };
 		81F5CE43207D435100B89A24 /* ObjectSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectionCell.swift; sourceTree = "<group>"; };
-		81F7B00D20BCB5AB0096C5D4 /* SignPainter HouseScript Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter HouseScript Regular.ttf"; sourceTree = "<group>"; };
+		81F7B00D20BCB5AB0096C5D4 /* SignPainter-HouseScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter-HouseScript-Regular.ttf"; sourceTree = "<group>"; };
 		D47BBEBD1D80FE2F467CF2CC /* Pods-HelloRecipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloRecipes.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloRecipes/Pods-HelloRecipes.release.xcconfig"; sourceTree = "<group>"; };
 		D9571EBE736CB4C0BE8D69B8 /* Pods-HelloRecipes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloRecipes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloRecipes/Pods-HelloRecipes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 				817854FC20AB8AA000A8F491 /* UIColorExtension.swift */,
 				817854FE20AB8AED00A8F491 /* NSAttributeStringExtension.swift */,
 				8178550020AB8B1B00A8F491 /* NotificationExtension.swift */,
+				8186C62920E4428000B4DD24 /* UIFontExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 		81F7B00F20BCB5B10096C5D4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				81F7B00D20BCB5AB0096C5D4 /* SignPainter HouseScript Regular.ttf */,
+				81F7B00D20BCB5AB0096C5D4 /* SignPainter-HouseScript-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -294,7 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C963DC2066F7A300B6AA0D /* LaunchScreen.storyboard in Resources */,
-				81F7B00E20BCB5AC0096C5D4 /* SignPainter HouseScript Regular.ttf in Resources */,
+				81F7B00E20BCB5AC0096C5D4 /* SignPainter-HouseScript-Regular.ttf in Resources */,
 				81C963D72066F7A300B6AA0D /* Main.storyboard in Resources */,
 				81330F5C2079C9C800C418A9 /* Assets.xcassets in Resources */,
 				816F14D9207449BF009C9016 /* RecipeCell.xib in Resources */,
@@ -366,6 +369,7 @@
 				81DBD4CE20671CDC00944B8A /* IngredientListTableViewCell.swift in Sources */,
 				81DBD4C9206710AF00944B8A /* IngredientController.swift in Sources */,
 				81F5CE42207D420300B89A24 /* ObjectSelectionViewController.swift in Sources */,
+				8186C62A20E4428000B4DD24 /* UIFontExtension.swift in Sources */,
 				8145127F2079A8EA00E7161C /* StretchingTableView.swift in Sources */,
 				81F5CE44207D435100B89A24 /* ObjectSelectionCell.swift in Sources */,
 				816F14DB2074523E009C9016 /* RecipeCollectionViewCell.swift in Sources */,

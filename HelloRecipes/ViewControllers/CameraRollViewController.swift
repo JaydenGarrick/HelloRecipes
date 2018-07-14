@@ -22,7 +22,6 @@ class PhotoSelectorController: UICollectionViewController {
     // MARK: - ViewLifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         fetchPhotos()
         collectionView?.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(PhotoSelectorCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: cellId)

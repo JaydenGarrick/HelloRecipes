@@ -41,8 +41,8 @@ class RecipeCollectionViewCell: UICollectionViewCell {
                 NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 35) as Any]
             )
             attributedText.append(NSAttributedString(string: "•    " + recipeString, attributes: [
-                NSAttributedStringKey.foregroundColor : UIColor.white,
-                NSAttributedStringKey.shadow : shadow,
+                NSAttributedStringKey.foregroundColor : UIColor.uiColors.primary,
+//                NSAttributedStringKey.shadow : shadow,
                 NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 16) as Any
                 ]))
             ingredientsTextField.attributedText = attributedText
@@ -70,13 +70,13 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     let recipeNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Recipe Name"
-        label.minimumScaleFactor = 15
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.init(name: "Devanagari Sangam MN", size: 30)
         label.textColor = .white
         label.textAlignment = .center
         label.shadowOffset = CGSize(width: 1, height: 1)
         label.numberOfLines = 0
-        label.minimumScaleFactor = 15
+        label.minimumScaleFactor = 0
         return label
     }()
     

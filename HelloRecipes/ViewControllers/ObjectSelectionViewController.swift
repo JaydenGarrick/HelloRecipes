@@ -31,7 +31,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     }()
     
     var selectedImage: UIImage? // Image that is being guessed on
-    var guesses = [String]() // Datasource
+    private(set) var guesses = [String]() // Datasource
     
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
@@ -84,7 +84,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
             let request = VNCoreMLRequest(model: model) { (request, error) in
                 guard let results = request.results as? [VNClassificationObservation] else { return }
                 self.guesses = [] // Empty out the guess array
-                results.forEach { self.guesses.append("\($0.identifier)?") } // For each guess the model makes, append the indentifier to the guess array
+                results.forEach { self.guesses.append($0.identifier) } // For each guess the model makes, append the indentifier to the guess array
                 DispatchQueue.main.async {
                     self.collectionView.reloadData() // Reload CollectionView
                     
@@ -150,7 +150,7 @@ extension ObjectSelectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let object = guesses[indexPath.row]
+        let object = guesses[indexPath.row].replacingOccurrences(of: "?", with: "")
         IngredientController.shared.add(ingredient: object)
         performSegue(withIdentifier: "toRecipes", sender: self)
     }

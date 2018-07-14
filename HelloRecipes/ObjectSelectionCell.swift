@@ -12,7 +12,8 @@ class ObjectSelectionCell: UICollectionViewCell {
     
     var ingredient: String? {
         didSet {
-            objectLabel.attributedText = NSAttributedString.stylizedTextWith(ingredient ?? "Unknown", shadowColor: UIColor.uiColors.primary, shadowOffSet: 1, mainTextColor: .white, textSize: 20)
+            let ingredientWithQuestionMark = ingredient! + "?"
+            objectLabel.attributedText = NSAttributedString.stylizedTextWith(ingredientWithQuestionMark, shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 20)
             self.backgroundColor = UIColor.uiColors.secondary
             self.layer.borderColor = UIColor.uiColors.primary.cgColor
         }
