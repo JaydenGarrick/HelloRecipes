@@ -48,7 +48,8 @@ class ObjectSelectionCell: UICollectionViewCell {
         objectLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         objectLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         objectLabel.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-        objectLabel.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        let width = frame.width - 10
+        objectLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
     }
 
 }

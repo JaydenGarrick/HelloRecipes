@@ -119,11 +119,11 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     }
     
     @objc fileprivate func handleOnPhotoView(notification: Notification) {
-        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Take a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Take a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 22)
     }
     
     @objc fileprivate func handleOnPictureView(notification: Notification) {
-        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 22)
     }
 }
 
