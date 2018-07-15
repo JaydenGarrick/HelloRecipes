@@ -58,14 +58,6 @@
         @IBOutlet weak var buttonAndYesLabelStackView: UIStackView!
         @IBOutlet weak var flashView: UIView!
         
-        // Constraint Outlets
-        @IBOutlet weak var segmentedControllerBottomConstraint: NSLayoutConstraint!
-        @IBOutlet weak var segmentedControllerTopConstraint: NSLayoutConstraint!
-        
-        var segmentedControllerConstraints: [NSLayoutConstraint]?
-        var scannerViewConstraints: [NSLayoutConstraint]?
-        var inferredObjectLabelConstraints: [NSLayoutConstraint]?
-        
         // Object that is being scanned
         var observedObject = ""
         
@@ -81,30 +73,27 @@
             setupNavigationBar()
             setupSegmentedControl()
             setupProgramaticConstraints()
-            gatherDefaultConstraints()
             objectSelectionView.isHidden = true
         }
         
-        func gatherDefaultConstraints() {
-            segmentedControllerConstraints = segmentedController.constraints
-            scannerViewConstraints = scannerView.constraints
-            inferredObjectLabelConstraints = inferredObjectLabel.constraints
-        }
-        
-        func setDefaultConstraints() {
+        func setConstraintsForScanView() {
             
             // 3
-            let currentInferredObjectConstraints = self.inferredObjectLabel.constraints
-            self.inferredObjectLabel.removeConstraints(currentInferredObjectConstraints)
-            
-            // 1
-            let currentScannerViewConstraints = self.scannerView.constraints
-            self.scannerView.removeConstraints(currentScannerViewConstraints)
+            self.inferredObjectLabel.deactivateAllConstraints()
+            inferredObjectLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 5.5, paddingBottom: 0, paddingRight: 5.5, width: 0, height: 41)
             
             // 2
-            let currentSegmentedControllerConstraints = self.segmentedController.constraints
-            self.segmentedController.removeConstraints(currentSegmentedControllerConstraints)
-            self.segmentedController.addConstraints(self.segmentedControllerConstraints!)
+            self.segmentedController.deactivateAllConstraints()
+            segmentedController.anchor(top: inferredObjectLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5.5, paddingBottom: 0, paddingRight: 5.5, width: 0, height: 28)
+            
+            // 4
+            buttonAndYesLabelStackView.deactivateAllConstraints()
+            buttonAndYesLabelStackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 66.5)
+            
+            // 1
+            self.scannerView.deactivateAllConstraints()
+            scannerView.anchor(top: segmentedController.bottomAnchor, left: view.leftAnchor, bottom: buttonAndYesLabelStackView.topAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0)
+            
             
         }
         
@@ -180,7 +169,7 @@
             
             // Handle Constraint to bump down Segmented Controller
             buttonAndYesLabelStackView.isHidden = false
-            setDefaultConstraints()
+            setConstraintsForScanView()
         }
         
         fileprivate func handlePictureView() {
