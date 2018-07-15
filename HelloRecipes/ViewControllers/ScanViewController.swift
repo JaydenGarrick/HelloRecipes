@@ -9,7 +9,7 @@
     import AVKit
     import Vision
     
-    class ScanViewController: UIViewController {
+    final class ScanViewController: UIViewController {
         
         // MARK: - Constants and Variables
         var guessResultForCameraTapped = [String]()
@@ -21,9 +21,9 @@
         }
         
         // AV Constants and variables
-        var captureSession: AVCaptureSession?
+        fileprivate var captureSession: AVCaptureSession?
         
-        let captureButton: UIButton = {
+        fileprivate let captureButton: UIButton = {
             let button = UIButton()
             button.isHidden = true
             let attributedString = NSAttributedString.stylizedTextWith("◉", shadowColor: UIColor.uiColors.primary, shadowOffSet: 2, mainTextColor: UIColor.uiColors.secondary, textSize: 70)
@@ -62,10 +62,14 @@
         @IBOutlet weak var segmentedControllerBottomConstraint: NSLayoutConstraint!
         @IBOutlet weak var segmentedControllerTopConstraint: NSLayoutConstraint!
         
+        var segmentedControllerConstraints: [NSLayoutConstraint]?
+        var scannerViewConstraints: [NSLayoutConstraint]?
+        var inferredObjectLabelConstraints: [NSLayoutConstraint]?
+        
         // Object that is being scanned
         var observedObject = ""
         
-        override var prefersStatusBarHidden: Bool {
+        override var prefersStatusBarHidden: Bool { // Override the status bar to be hidden
             return true
         }
         
@@ -77,7 +81,31 @@
             setupNavigationBar()
             setupSegmentedControl()
             setupProgramaticConstraints()
+            gatherDefaultConstraints()
             objectSelectionView.isHidden = true
+        }
+        
+        func gatherDefaultConstraints() {
+            segmentedControllerConstraints = segmentedController.constraints
+            scannerViewConstraints = scannerView.constraints
+            inferredObjectLabelConstraints = inferredObjectLabel.constraints
+        }
+        
+        func setDefaultConstraints() {
+            
+            // 3
+            let currentInferredObjectConstraints = self.inferredObjectLabel.constraints
+            self.inferredObjectLabel.removeConstraints(currentInferredObjectConstraints)
+            
+            // 1
+            let currentScannerViewConstraints = self.scannerView.constraints
+            self.scannerView.removeConstraints(currentScannerViewConstraints)
+            
+            // 2
+            let currentSegmentedControllerConstraints = self.segmentedController.constraints
+            self.segmentedController.removeConstraints(currentSegmentedControllerConstraints)
+            self.segmentedController.addConstraints(self.segmentedControllerConstraints!)
+            
         }
         
         // MARK: - IBActions
@@ -105,7 +133,7 @@
             }
         }
         
-        func toggleFlash() {
+        fileprivate func toggleFlash() {
             flashView.isHidden = false
             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] (_) in
                 self?.flashView.isHidden = true
@@ -133,6 +161,15 @@
         }
         
         // MARK: - Methods to handle which segmented index is active
+        fileprivate func constraintsForPictureViewAndCameraRollView() {
+            // Handle Constraint to bump up Segmented Controller
+            segmentedController.translatesAutoresizingMaskIntoConstraints = false
+            segmentedController.heightAnchor.constraint(equalToConstant: 28).isActive = true
+            segmentedController.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+            scannerView.translatesAutoresizingMaskIntoConstraints = false
+            scannerView.topAnchor.constraint(equalTo: segmentedController.bottomAnchor, constant: 5).isActive = true
+        }
+        
         fileprivate func handleScanViews() {
             captureSession?.startRunning()
             captureButton.isHidden = true
@@ -142,9 +179,8 @@
             objectSelectionView.isHidden = true
             
             // Handle Constraint to bump down Segmented Controller
-            segmentedControllerBottomConstraint.constant = 4
-            segmentedControllerTopConstraint.constant = 50
             buttonAndYesLabelStackView.isHidden = false
+            setDefaultConstraints()
         }
         
         fileprivate func handlePictureView() {
@@ -156,11 +192,8 @@
             objectSelectionView.isHidden = false
             
             // Handle Constraint to bump up Segmented Controller
-            segmentedControllerBottomConstraint.constant = 50
-            segmentedControllerTopConstraint.constant = 4
+            constraintsForPictureViewAndCameraRollView()
             buttonAndYesLabelStackView.isHidden = true
-            scannerView.translatesAutoresizingMaskIntoConstraints = false
-            scannerView.topAnchor.constraint(equalTo: self.segmentedController.bottomAnchor, constant: 5).isActive = true
         }
         
         fileprivate func handleCameraRollView() {
@@ -171,9 +204,7 @@
             scannerView.isHidden = true
             objectSelectionView.isHidden = false
             
-            // Handle Constraint to bump up Segmented Controller
-            segmentedControllerBottomConstraint.constant = 50
-            segmentedControllerTopConstraint.constant = 4
+            constraintsForPictureViewAndCameraRollView()
             buttonAndYesLabelStackView.isHidden = true
         }
         
@@ -189,15 +220,20 @@
             })
         }
         // MARK: - Setup Functions
+        /// Sets up a custom segmented control
         fileprivate func setupSegmentedControl() {
-            let titleTextAttributes = [NSAttributedStringKey.foregroundColor: uiColors.primary]
+            let titleTextAttributesForNotSelected = [
+                NSAttributedStringKey.foregroundColor: uiColors.primary,
+                NSAttributedStringKey.font: UIFont(name: "Devanagari Sangam MN", size: 16) ?? UIFont.systemFont(ofSize: 1)
+            ] as [NSAttributedStringKey: Any]
+            
             segmentedController.tintColor = uiColors.secondary
-            segmentedController.setTitleTextAttributes(titleTextAttributes, for: .selected)
-            segmentedController.setTitleTextAttributes(titleTextAttributes, for: .normal)
+            segmentedController.setTitleTextAttributes(titleTextAttributesForNotSelected, for: .selected)
+            segmentedController.setTitleTextAttributes(titleTextAttributesForNotSelected, for: .normal)
             segmentedController.layer.borderColor = uiColors.primary.cgColor
             segmentedController.layer.borderWidth = 1
             segmentedController.layer.cornerRadius = 5
-//            objectSelectionView.isHidden = true
+            //            objectSelectionView.isHidden = true
         }
         
         fileprivate func setColorsForUI() {
@@ -212,7 +248,9 @@
             amIRightLabel.textColor = uiColors.primary
         }
         
-        func setupCamera() {
+        
+        /// Sets up the camera
+        fileprivate func setupCamera() {
             captureSession = AVCaptureSession()
             captureSession?.sessionPreset = .photo
             guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -224,7 +262,7 @@
             let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             scannerView.layer.addSublayer(previewLayer)
             previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.bounds.width + 45, height: scannerView.layer.frame.height + 100)
+            previewLayer.frame = CGRect(x: 0, y: 0, width: scannerView.bounds.width + 45, height: scannerView.layer.frame.height + 120)
             previewLayer.layoutIfNeeded()
             
             // DataOutput
@@ -233,7 +271,9 @@
             captureSession?.addOutput(dataOutput)
         }
         
-        func setupProgramaticConstraints() {
+        
+        /// Sets up all the views that are programatic
+        fileprivate func setupProgramaticConstraints() {
             view.addSubview(captureButton)
             // captureButton
             captureButton.anchor(top: nil, left: scannerView.leftAnchor, bottom: scannerView.bottomAnchor, right: scannerView.rightAnchor, paddingTop: 0, paddingLeft: 40, paddingBottom: 20, paddingRight: 40, width: 40, height: 40)
@@ -241,6 +281,8 @@
         }
         
         // MARK: - Navigation Bar
+        
+        /// Sets up the navigation bar with the correct color and adds tap gesture for changing ui color
         fileprivate func setupNavigationBar() {
             view.setupNavigationBarWith(viewController: self, primary: uiColors.primary, secondary: uiColors.secondary)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeUIColors))

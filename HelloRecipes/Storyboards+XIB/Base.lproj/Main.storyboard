@@ -513,7 +513,7 @@
     <resources>
         <image name="groceries-bag (1)" width="25" height="25"/>
         <namedColor name="DarkGreen">
-            <color red="0.086000002920627594" green="0.62400001287460327" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.071000002324581146" green="0.51800000667572021" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightPeach">
             <color red="0.96100002527236938" green="0.90200001001358032" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

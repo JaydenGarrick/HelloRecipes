@@ -62,7 +62,7 @@ class IngredientsViewController: UIViewController {
         return noIngredientsLabel
     }()
     
-    // MARK: - viewDidLoad
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -112,6 +112,7 @@ class IngredientsViewController: UIViewController {
         })
     }
     
+    /// Sets up the UI
     fileprivate func setupUI() {
         
         // Setup Custom RefreshControl
