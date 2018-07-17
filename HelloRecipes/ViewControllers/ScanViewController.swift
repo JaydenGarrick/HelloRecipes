@@ -153,9 +153,9 @@
             
             // ScannerView
             self.scannerView.deactivateAllConstraints()
-            scannerView.anchor(top: segmentedController.bottomAnchor, left: view.leftAnchor, bottom: buttonAndYesLabelStackView.topAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0)
+            scannerView.anchor(top: segmentedController.bottomAnchor, left: view.leftAnchor, bottom: buttonAndYesLabelStackView.topAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 7, paddingRight: 5, width: 0, height: 0)
         }
-
+        
         
         fileprivate func handleScanViews() {
             captureSession?.startRunning()
@@ -212,7 +212,7 @@
             let titleTextAttributesForNotSelected = [
                 NSAttributedStringKey.foregroundColor: uiColors.primary,
                 NSAttributedStringKey.font: UIFont(name: "Devanagari Sangam MN", size: 16) ?? UIFont.systemFont(ofSize: 1)
-            ] as [NSAttributedStringKey: Any]
+                ] as [NSAttributedStringKey: Any]
             
             segmentedController.tintColor = uiColors.secondary
             segmentedController.setTitleTextAttributes(titleTextAttributesForNotSelected, for: .selected)
@@ -280,7 +280,6 @@
             navView.addGestureRecognizer(tapGesture)
             navigationController?.navigationBar.addSubview(navView)
         }
-        
     }
     
     // MARK: - Handle Scan with AVCaptureVideoDataOutputSampleBufferDelegate
@@ -291,13 +290,11 @@
             let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
                 guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
                 self.guessResultForCameraTapped = results.compactMap { $0.identifier }
-                
-                
                 guard let firstObservation = results.first else { return }
-                    DispatchQueue.main.async {
-                        self.inferredObjectLabel.text = "\(firstObservation.identifier)?"
-                        self.observedObject = firstObservation.identifier
-                    }
+                DispatchQueue.main.async {
+                    self.inferredObjectLabel.text = "\(firstObservation.identifier)?"
+                    self.observedObject = firstObservation.identifier
+                }
             }
             try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
         }

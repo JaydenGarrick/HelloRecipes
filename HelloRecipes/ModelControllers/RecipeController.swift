@@ -9,7 +9,7 @@
 import UIKit
 
 /// Model Controller for Recipes
-class RecipeController {
+final class RecipeController {
     
     /// Method to fetch recipes with array of Ingredients
     static func fetchRecipes(with ingredients: [Ingredient], completion: @escaping (([MyRecipie]?)->Void)) {

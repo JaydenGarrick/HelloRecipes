@@ -12,7 +12,7 @@ protocol RecipeListCollectionViewCellDelegate : class {
     func imageViewTapped(_ sender: RecipeCollectionViewCell)
 }
 
-class RecipeCollectionViewCell: UICollectionViewCell {
+final class RecipeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Constants/Variables
     var uiColors = UIColor.uiColors
@@ -42,7 +42,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
             )
             attributedText.append(NSAttributedString(string: "•    " + recipeString, attributes: [
                 NSAttributedStringKey.foregroundColor : UIColor.uiColors.primary,
-//                NSAttributedStringKey.shadow : shadow,
+                //                NSAttributedStringKey.shadow : shadow,
                 NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 16) as Any
                 ]))
             ingredientsTextField.attributedText = attributedText
@@ -59,15 +59,15 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         imageView.layer.borderWidth = 1
         return imageView
     }()
-        
-    let imageHolderView: UIView = {
+    
+    private let imageHolderView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
         view.backgroundColor = UIColor.clear
         return view
     }()
     
-    let recipeNameLabel: UILabel = {
+    private let recipeNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Recipe Name"
         label.adjustsFontSizeToFitWidth = true
@@ -80,14 +80,14 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let seperatorView: UIView = {
+    private let seperatorView: UIView = {
         let view = UIView()
         view.clipsToBounds = false
         view.layer.cornerRadius = 5
         return view
     }()
     
-    let sourceLabel: UILabel = {
+    private let sourceLabel: UILabel = {
         let label = UILabel()
         label.text = "Source Name"
         label.font = UIFont.init(name: "Devanagari Sangam MN", size: 16)
@@ -98,7 +98,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let ingredientsTextField: UITextView = {
+    private let ingredientsTextField: UITextView = {
         let textView = UITextView()
         textView.clipsToBounds = true
         textView.isSelectable = false

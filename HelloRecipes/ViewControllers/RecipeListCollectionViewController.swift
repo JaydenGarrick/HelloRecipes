@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeListCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class RecipeListCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Constants / Variables
     var uiColors = UIColor.uiColors

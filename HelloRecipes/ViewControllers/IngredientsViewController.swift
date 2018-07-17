@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientsViewController: UIViewController {
+final class IngredientsViewController: UIViewController {
 
     // MARK: - IBOutlets / Constants and Variables
     var uiColors = UIColor.uiColors
@@ -253,7 +253,6 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
             return 125
         } else { return 0 }
     }
-    
 }
 
 // MARK: - ScrollView Functions

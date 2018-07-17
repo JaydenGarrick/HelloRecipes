@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIFont {
-    
     static func signPainterFont(ofSize: CGFloat) -> UIFont {
         guard let font = UIFont(name: "SignPainterHouseScript", size: ofSize) else { fatalError("couldn't find custom font")}
         return font

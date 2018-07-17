@@ -12,7 +12,7 @@ import Vision
 import CoreML
 
 
-class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+final class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: - Constants and Variables
     @IBOutlet weak var collectionView: UICollectionView!
@@ -113,7 +113,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     
     @objc fileprivate func handleColorChanged(notification: Notification) {
         collectionView.reloadData()
-        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select an Image, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 22)
         tapOnImageLabel.backgroundColor = UIColor.uiColors.secondary
         tapOnImageLabel.layer.borderColor = UIColor.uiColors.primary.cgColor
     }

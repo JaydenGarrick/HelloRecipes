@@ -8,10 +8,10 @@
 
 import UIKit
 
-class IngredientListTableViewCell: UITableViewCell {
+final class IngredientListTableViewCell: UITableViewCell {
     
     // MARK: - Constants and Variables
-    var uiColors = UIColor.uiColors
+    private var uiColors = UIColor.uiColors
     var ingredient: Ingredient? {
         didSet {
             guard let ingredient = ingredient else { return }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ObjectSelectionCell: UICollectionViewCell {
+final class ObjectSelectionCell: UICollectionViewCell {
     
     var ingredient: String? {
         didSet {

@@ -9,8 +9,8 @@
 import UIKit
 import Photos
 
-class PhotoSelectorController: UICollectionViewController {
-
+final class PhotoSelectorController: UICollectionViewController {
+    
     // MARK: - Constants and Variables
     let cellId = "cellId"
     

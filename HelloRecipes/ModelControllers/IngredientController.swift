@@ -9,7 +9,7 @@
 import Foundation
 
 /// Model Controller for Ingredient
-class IngredientController {
+final class IngredientController {
     
     // MARK: - Constants / Variables
     static let shared = IngredientController() ; private init() {}// Singleton
