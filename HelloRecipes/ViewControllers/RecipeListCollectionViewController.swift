@@ -84,6 +84,8 @@ class RecipeListCollectionViewController: UICollectionViewController, UICollecti
     
     fileprivate func setupNavigationBar() {
         view.setupNavigationBarWith(viewController: self, primary: UIColor.uiColors.primary, secondary: UIColor.uiColors.secondary)
+        navigationController?.navigationBar.tintColor = UIColor.uiColors.primary
+        navigationController?.navigationBar.backItem?.backBarButtonItem?.title = ""
     }
     
     fileprivate func setupCollectionView() {
@@ -124,6 +126,11 @@ extension RecipeListCollectionViewController {
         return UIEdgeInsets(top: 10, left: 2, bottom: 2, right: 10)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
         guard let recipeUrl = recipe.url,
@@ -140,13 +147,11 @@ extension RecipeListCollectionViewController {
 // MARK: - Cell Animation Functions
 extension RecipeListCollectionViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
         if let collectionView = scrollView as? UICollectionView {
             for cell in collectionView.visibleCells as! [RecipeCollectionViewCell] {
                 let indexPath = collectionView.indexPath(for: cell)!
                 let attributes = collectionView.layoutAttributesForItem(at: indexPath)!
                 let cellFrame = collectionView.convert(attributes.frame, to: view)
-                
                 let translationX = cellFrame.origin.x / 7
                 cell.photoImageView.transform = CGAffineTransform(translationX: translationX, y: 0)
                 cell.layer.transform = animateCell(cellFrame: cellFrame)

@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDF-gz-3VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2542.0289855072465" y="31.793478260869566"/>
+            <point key="canvasLocation" x="2554" y="51"/>
         </scene>
         <!--Hello Recipes-->
         <scene sceneID="k0C-eN-QGv">
@@ -397,11 +397,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="93Q-cf-zIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3282" y="30"/>
+            <point key="canvasLocation" x="3312" y="51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ttC-Op-kUs">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCq-Fm-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ejY-4u-6Xn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -415,7 +416,6 @@
                         <segue destination="L1Z-cv-krg" kind="relationship" relationship="rootViewController" id="aY7-Y8-afp"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yCq-Fm-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1849" y="51"/>
         </scene>

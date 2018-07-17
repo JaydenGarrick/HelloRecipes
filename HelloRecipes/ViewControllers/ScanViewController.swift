@@ -76,27 +76,6 @@
             objectSelectionView.isHidden = true
         }
         
-        func setConstraintsForScanView() {
-            
-            // 3
-            self.inferredObjectLabel.deactivateAllConstraints()
-            inferredObjectLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 5.5, paddingBottom: 0, paddingRight: 5.5, width: 0, height: 41)
-            
-            // 2
-            self.segmentedController.deactivateAllConstraints()
-            segmentedController.anchor(top: inferredObjectLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5.5, paddingBottom: 0, paddingRight: 5.5, width: 0, height: 28)
-            
-            // 4
-            buttonAndYesLabelStackView.deactivateAllConstraints()
-            buttonAndYesLabelStackView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 66.5)
-            
-            // 1
-            self.scannerView.deactivateAllConstraints()
-            scannerView.anchor(top: segmentedController.bottomAnchor, left: view.leftAnchor, bottom: buttonAndYesLabelStackView.topAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0)
-            
-            
-        }
-        
         // MARK: - IBActions
         @IBAction func yesButtonTapped(_ sender: Any) {
             IngredientController.shared.add(ingredient: observedObject)
@@ -158,6 +137,25 @@
             scannerView.translatesAutoresizingMaskIntoConstraints = false
             scannerView.topAnchor.constraint(equalTo: segmentedController.bottomAnchor, constant: 5).isActive = true
         }
+        
+        func setConstraintsForScanView() {
+            // Constraints for inferredObejctLabel
+            self.inferredObjectLabel.deactivateAllConstraints()
+            inferredObjectLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 5.5, paddingBottom: 0, paddingRight: 5.5, width: 0, height: 41)
+            
+            // Segmented Controller
+            self.segmentedController.deactivateAllConstraints()
+            segmentedController.anchor(top: inferredObjectLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5.5, paddingBottom: 0, paddingRight: 5.5, width: 0, height: 28)
+            
+            // ButtonYesLabelStackView
+            buttonAndYesLabelStackView.deactivateAllConstraints()
+            buttonAndYesLabelStackView.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide   .bottomAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 66.5)
+            
+            // ScannerView
+            self.scannerView.deactivateAllConstraints()
+            scannerView.anchor(top: segmentedController.bottomAnchor, left: view.leftAnchor, bottom: buttonAndYesLabelStackView.topAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0)
+        }
+
         
         fileprivate func handleScanViews() {
             captureSession?.startRunning()
@@ -293,11 +291,13 @@
             let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
                 guard let results = finishedReq.results as? [VNClassificationObservation] else { return }
                 self.guessResultForCameraTapped = results.compactMap { $0.identifier }
+                
+                
                 guard let firstObservation = results.first else { return }
-                DispatchQueue.main.async {
-                    self.inferredObjectLabel.text = "\(firstObservation.identifier)?"
-                    self.observedObject = firstObservation.identifier
-                }
+                    DispatchQueue.main.async {
+                        self.inferredObjectLabel.text = "\(firstObservation.identifier)?"
+                        self.observedObject = firstObservation.identifier
+                    }
             }
             try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
         }

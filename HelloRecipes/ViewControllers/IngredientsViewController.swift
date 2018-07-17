@@ -222,7 +222,7 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
         let ingredient = IngredientController.shared.ingredients[indexPath.row]
         
         // Generator so user feels slight vibration when swiping
-        let generator = UIImpactFeedbackGenerator(style: .medium)
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         
         // Action that deletes the ingredient from datasource

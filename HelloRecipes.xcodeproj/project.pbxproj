@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		81330F5C2079C9C800C418A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81330F5B2079C9C800C418A9 /* Assets.xcassets */; };
 		8145127F2079A8EA00E7161C /* StretchingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145127E2079A8EA00E7161C /* StretchingTableView.swift */; };
-		816F14D9207449BF009C9016 /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816F14D8207449BF009C9016 /* RecipeCell.xib */; };
 		816F14DB2074523E009C9016 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F14DA2074523E009C9016 /* RecipeCollectionViewCell.swift */; };
 		816F14DD2074548F009C9016 /* RecipeListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F14DC2074548F009C9016 /* RecipeListCollectionViewController.swift */; };
 		816F14EA20757686009C9016 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F14E920757686009C9016 /* CustomImageView.swift */; };
@@ -43,7 +42,6 @@
 		2C6F68BA6ED3C1430BB965E9 /* Pods_HelloRecipes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloRecipes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81330F5B2079C9C800C418A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8145127E2079A8EA00E7161C /* StretchingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingTableView.swift; sourceTree = "<group>"; };
-		816F14D8207449BF009C9016 /* RecipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCell.xib; sourceTree = "<group>"; };
 		816F14DA2074523E009C9016 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		816F14DC2074548F009C9016 /* RecipeListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListCollectionViewController.swift; sourceTree = "<group>"; };
 		816F14E920757686009C9016 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 			children = (
 				81C963D52066F7A300B6AA0D /* Main.storyboard */,
 				81C963DA2066F7A300B6AA0D /* LaunchScreen.storyboard */,
-				816F14D8207449BF009C9016 /* RecipeCell.xib */,
 			);
 			path = "Storyboards+XIB";
 			sourceTree = "<group>";
@@ -300,7 +297,6 @@
 				81F7B00E20BCB5AC0096C5D4 /* SignPainter-HouseScript-Regular.ttf in Resources */,
 				81C963D72066F7A300B6AA0D /* Main.storyboard in Resources */,
 				81330F5C2079C9C800C418A9 /* Assets.xcassets in Resources */,
-				816F14D9207449BF009C9016 /* RecipeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
