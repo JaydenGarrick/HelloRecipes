@@ -11,7 +11,6 @@ import AVKit
 import Vision
 import CoreML
 
-
 final class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: - Constants and Variables
