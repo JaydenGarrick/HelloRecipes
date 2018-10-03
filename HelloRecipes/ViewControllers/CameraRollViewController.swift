@@ -22,9 +22,31 @@ final class PhotoSelectorController: UICollectionViewController {
     // MARK: - ViewLifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPhotos()
+//        fetchPhotos()
         collectionView?.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(PhotoSelectorCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: cellId)
+        checkPhotoPermissionStatus()
+    }
+    
+    fileprivate func checkPhotoPermissionStatus() {
+        let currentAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch currentAuthorizationStatus {
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { [weak self] (status) in
+                if status == .authorized {
+                    self?.fetchPhotos()
+                } else {
+                    self?.presentAlertWhenPhotoAccessDenies()
+                }
+            }
+        case .restricted:
+            presentAlertWhenPhotoAccessDenies()
+        case .denied:
+            presentAlertWhenPhotoAccessDenies()
+        case .authorized:
+            fetchPhotos()
+        }
     }
     
     fileprivate func assetFetchOptions() -> PHFetchOptions {
@@ -129,3 +151,32 @@ extension PhotoSelectorController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+// MARK: - Alert when user doesn't allow camera access
+extension PhotoSelectorController {
+    func presentAlertWhenPhotoAccessDenies() {
+        let alert = UIAlertController(title: "Your photos are a critical part of the HelloRecipes app!", message: "Denying photo usage doesn't leave much functionality for HelloRecipes. Please go to settings and allow photo usage!", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.uiColors.primary
+        let okayAction = UIAlertAction(title: "OK", style: .default) { [weak self] (_) in
+            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+            self?.checkPhotoPermissionStatus()
+        }
+        alert.addAction(okayAction)
+        present(alert, animated: true)
+    }
+}
+
+
+
+
+
+
+
+

@@ -17,7 +17,6 @@ class NetworkManager: NSObject, NetworkLoader {
     
     init(requestExecutor: NetworkRequestExecutor? = nil) {
         super.init()
-        
         if let requestExecutor = requestExecutor {
             self.requestExecutor = requestExecutor
         } else {
@@ -28,7 +27,6 @@ class NetworkManager: NSObject, NetworkLoader {
             config.urlCache?.diskCapacity = 50*1024*1024
             self.requestExecutor = URLSession(configuration: config, delegate: self, delegateQueue: nil)
         }
-        
     }
     
     /// Loads an object that conforms to the LodableType protocol.
@@ -40,17 +38,14 @@ class NetworkManager: NSObject, NetworkLoader {
         guard let task = requestExecutor?.dataTask(with: resource.urlRequest) else {
             fatalError("NetworkingManager doesn't work without a NetworkRequestExecutor")
         }
-        
         loadCompletionHandlers[task] = {
             if let error = self.errors[task] {
                 completion(.failure(error: error))
             }
-            
             guard let data = self.data[task] else {
                 completion(.failure(error: .noDataReturned))
                 return
             }
-            
             guard let object = try? resource.parser(data) else {
                 completion(.failure(error: .unparsable))
                 return
@@ -101,9 +96,7 @@ extension NetworkManager: URLSessionDataDelegate {
         if error != nil && errors[task] == nil {
             errors[task] = .unknown
         }
-        
         loadCompletionHandlers[task]?()
-        
         errors.removeValue(forKey: task)
         data.removeValue(forKey: task)
         loadCompletionHandlers.removeValue(forKey: task)
@@ -111,17 +104,3 @@ extension NetworkManager: URLSessionDataDelegate {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

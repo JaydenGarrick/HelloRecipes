@@ -50,7 +50,7 @@ final class IngredientsViewController: UIViewController {
         noIngredientsLabel.attributedText = NSAttributedString.stylizedTextWith(
             "You currently have 0 ingredients gathered. \n Pull, Scan, Snap, or Tap to add more Ingredients!",
             shadowColor: UIColor.uiColors.primary,
-            shadowOffSet: 1, mainTextColor: .white,
+            shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary,
             textSize: 15
         )
         noIngredientsLabel.minimumScaleFactor = 15
@@ -253,6 +253,8 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
             return 125
         } else { return 0 }
     }
+    
+//    prepareForReus
 }
 
 // MARK: - ScrollView Functions

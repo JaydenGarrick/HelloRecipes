@@ -112,8 +112,8 @@ extension RecipeListCollectionViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let navigationBarHeight = navigationController?.navigationBar.frame.height else { print("⚠️Can't Find NavigationBar Height") ; return CGSize.init(width: view.frame.width - 10, height: view.frame.height - 30) }
-        let height: CGFloat = view.frame.height - navigationBarHeight - 40
+        guard let navigationBarHeight = navigationController?.navigationBar.frame.height else { print("⚠️Can't Find NavigationBar Height") ; fatalError() }
+        let height: CGFloat = view.frame.height - navigationBarHeight 
         
         return CGSize(width: view.frame.width - 10, height: height)
     }

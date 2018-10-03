@@ -33,6 +33,7 @@ extension UIView {
     
     func setupNavigationBarWith(viewController: UIViewController, primary: UIColor, secondary: UIColor) {
         viewController.navigationController?.navigationBar.barTintColor = secondary
+        viewController.navigationController?.navigationBar.isTranslucent = false        
         let shadow = NSShadow()
         shadow.shadowColor = primary
         shadow.shadowOffset = CGSize(width: 1, height: 1)

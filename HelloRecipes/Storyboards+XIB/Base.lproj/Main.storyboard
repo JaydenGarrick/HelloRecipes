@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AY4-nq-DQq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AY4-nq-DQq">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanning..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UPF-Is-3EM">
-                                <rect key="frame" x="5" y="64" width="403.66666666666669" height="40.666666666666657"/>
+                                <rect key="frame" x="5.6666666666666572" y="64" width="403" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="30"/>
                                 <color key="textColor" red="0.80392156862745101" green="0.5607843137254902" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -206,11 +206,11 @@
             <objects>
                 <viewController id="L1Z-cv-krg" customClass="IngredientsViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Guf-U2-6pS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqo-Bs-T3j">
-                                <rect key="frame" x="57" y="214.66666666666663" width="300" height="307"/>
+                                <rect key="frame" x="57" y="-108.66666666666669" width="300" height="307.33333333333331"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xSA-KD-wLx" customClass="StretchingTableView" customModule="HelloRecipes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="307"/>
@@ -224,7 +224,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-iE-DcE">
-                                                    <rect key="frame" x="4" y="11" width="292" height="21"/>
+                                                    <rect key="frame" x="4" y="11.666666666666664" width="292" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" identifier="height" id="ndw-sa-DfW"/>
                                                     </constraints>
@@ -250,7 +250,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done gathering ingredients?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2h-tk-VT6">
-                                                            <rect key="frame" x="47.333333333333329" y="0.0" width="205.33333333333337" height="21"/>
+                                                            <rect key="frame" x="48.666666666666657" y="0.0" width="203" height="21"/>
                                                             <fontDescription key="fontDescription" name="DevanagariSangamMN" family="Devanagari Sangam MN" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -293,10 +293,10 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-mr-imo" userLabel="ShadowView">
-                                                            <rect key="frame" x="5" y="5" width="290" height="39"/>
+                                                            <rect key="frame" x="5" y="5" width="290" height="39.333333333333336"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZG6-Nt-Jbx">
-                                                                    <rect key="frame" x="3" y="0.0" width="19.666666666666668" height="39"/>
+                                                                    <rect key="frame" x="3" y="0.0" width="19.666666666666668" height="39.333333333333336"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" name="DarkGreen"/>
                                                                     <nil key="highlightedColor"/>
@@ -304,7 +304,7 @@
                                                                     <size key="shadowOffset" width="0.10000000000000001" height="0.10000000000000001"/>
                                                                 </label>
                                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(Ingredient)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="USB-Zn-0vC">
-                                                                    <rect key="frame" x="23.666666666666657" y="8" width="258.33333333333337" height="23"/>
+                                                                    <rect key="frame" x="24" y="7.9999999999999982" width="258" height="23.333333333333329"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <color key="tintColor" name="DarkGreen"/>
                                                                     <color key="textColor" name="DarkGreen"/>
@@ -379,7 +379,7 @@
             <objects>
                 <collectionViewController title="Hello Recipes" id="3oq-hj-XTT" customClass="RecipeListCollectionViewController" customModule="HelloRecipes" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hM3-cU-wRe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tqP-hm-obh">
@@ -402,12 +402,11 @@
         <!--Navigation Controller-->
         <scene sceneID="ttC-Op-kUs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yCq-Fm-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ejY-4u-6Xn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9mk-jS-31Y">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="LightPeach"/>
                     </navigationBar>
@@ -416,6 +415,7 @@
                         <segue destination="L1Z-cv-krg" kind="relationship" relationship="rootViewController" id="aY7-Y8-afp"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCq-Fm-lT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1849" y="51"/>
         </scene>
@@ -518,6 +518,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1bt-Os-P7F"/>
+        <segue reference="BUh-2b-hD0"/>
     </inferredMetricsTieBreakers>
 </document>
