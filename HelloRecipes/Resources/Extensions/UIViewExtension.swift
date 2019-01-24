@@ -33,6 +33,7 @@ extension UIView {
     
     func setupNavigationBarWith(viewController: UIViewController, primary: UIColor, secondary: UIColor) {
         viewController.navigationController?.navigationBar.barTintColor = secondary
+        viewController.navigationController?.navigationBar.isTranslucent = false        
         let shadow = NSShadow()
         shadow.shadowColor = primary
         shadow.shadowOffset = CGSize(width: 1, height: 1)
@@ -40,7 +41,46 @@ extension UIView {
         viewController.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor : UIColor.white,
             NSAttributedStringKey.shadow : shadow,
-            NSAttributedStringKey.font : UIFont(name: "Devanagari Sangam MN", size: 25) as Any
+            NSAttributedStringKey.font : UIFont.signPainterFont(ofSize: 40)
         ]
     }
+    
+    func removeConstraints() {
+        removeConstraints(constraints)
+    }
+    
+    func deactivateAllConstraints() {
+        NSLayoutConstraint.deactivate(getAllConstraints())
+    }
+    
+    func getAllSubviews() -> [UIView] {
+        return UIView.getAllSubviews(view: self)
+    }
+    
+    func getAllConstraints() -> [NSLayoutConstraint] {
+        
+        var subviewsConstraints = getAllSubviews().flatMap { (view) -> [NSLayoutConstraint] in
+            return view.constraints
+        }
+        
+        if let superview = self.superview {
+            subviewsConstraints += superview.constraints.compactMap { (constraint) -> NSLayoutConstraint? in
+                if let view = constraint.firstItem as? UIView {
+                    if view == self {
+                        return constraint
+                    }
+                }
+                return nil
+            }
+        }
+        
+        return subviewsConstraints + constraints
+    }
+    
+    class func getAllSubviews(view: UIView) -> [UIView] {
+        return view.subviews.flatMap { subView -> [UIView] in
+            return [subView] + getAllSubviews(view: subView)
+        }
+    }
 }
+

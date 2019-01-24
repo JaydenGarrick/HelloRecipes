@@ -8,14 +8,14 @@
 
 import UIKit
 
-class IngredientListTableViewCell: UITableViewCell {
+final class IngredientListTableViewCell: UITableViewCell {
     
     // MARK: - Constants and Variables
-    var uiColors = UIColor.uiColors
+    private var uiColors = UIColor.uiColors
     var ingredient: Ingredient? {
         didSet {
             guard let ingredient = ingredient else { return }
-            ingredientTextField.attributedText = NSAttributedString.stylizedTextWith(ingredient.ingredient, shadowColor: uiColors.primary, shadowOffSet: 1, mainTextColor: UIColor.white, textSize: 16)
+            ingredientTextField.attributedText = NSAttributedString.stylizedTextWith("  \(ingredient.ingredient)", shadowColor: uiColors.primary, shadowOffSet: 0, mainTextColor: uiColors.primary, textSize: 16)
             setupShadowView()
         }
     }

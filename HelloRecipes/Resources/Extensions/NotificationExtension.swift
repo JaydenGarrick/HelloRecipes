@@ -14,4 +14,5 @@ extension Notification.Name {
     static let colorsChanged = NSNotification.Name("colorsChanged")
     static let onCameraView = NSNotification.Name("onCameraView")
     static let onPhotoView = NSNotification.Name("onPhotoView")
+    static let connectivityLost = Notification.Name("connectivityLost")
 }

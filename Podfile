@@ -6,7 +6,7 @@ target 'HelloRecipes' do
   use_frameworks!
 
   # Pods for HelloRecipes
-#  pod 'IQKeyboardManagerSwift', '5.0.0'
+  pod 'IQKeyboardManagerSwift', '5.0.0'
 
 end
 

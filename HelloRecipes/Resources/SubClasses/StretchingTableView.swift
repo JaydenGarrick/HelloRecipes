@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StretchingTableView: UITableView {
+final class StretchingTableView: UITableView {
 
     var heightConstraint: NSLayoutConstraint?
     

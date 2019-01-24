@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientsViewController: UIViewController {
+final class IngredientsViewController: UIViewController {
 
     // MARK: - IBOutlets / Constants and Variables
     var uiColors = UIColor.uiColors
@@ -50,7 +50,7 @@ class IngredientsViewController: UIViewController {
         noIngredientsLabel.attributedText = NSAttributedString.stylizedTextWith(
             "You currently have 0 ingredients gathered. \n Pull, Scan, Snap, or Tap to add more Ingredients!",
             shadowColor: UIColor.uiColors.primary,
-            shadowOffSet: 1, mainTextColor: .white,
+            shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary,
             textSize: 15
         )
         noIngredientsLabel.minimumScaleFactor = 15
@@ -62,7 +62,7 @@ class IngredientsViewController: UIViewController {
         return noIngredientsLabel
     }()
     
-    // MARK: - viewDidLoad
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -112,6 +112,7 @@ class IngredientsViewController: UIViewController {
         })
     }
     
+    /// Sets up the UI
     fileprivate func setupUI() {
         
         // Setup Custom RefreshControl
@@ -221,7 +222,7 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
         let ingredient = IngredientController.shared.ingredients[indexPath.row]
         
         // Generator so user feels slight vibration when swiping
-        let generator = UIImpactFeedbackGenerator(style: .medium)
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
         
         // Action that deletes the ingredient from datasource
@@ -253,6 +254,7 @@ extension IngredientsViewController: UITableViewDelegate, UITableViewDataSource 
         } else { return 0 }
     }
     
+//    prepareForReus
 }
 
 // MARK: - ScrollView Functions

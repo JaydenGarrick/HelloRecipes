@@ -12,7 +12,7 @@ protocol RecipeListCollectionViewCellDelegate : class {
     func imageViewTapped(_ sender: RecipeCollectionViewCell)
 }
 
-class RecipeCollectionViewCell: UICollectionViewCell {
+final class RecipeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Constants/Variables
     var uiColors = UIColor.uiColors
@@ -41,8 +41,8 @@ class RecipeCollectionViewCell: UICollectionViewCell {
                 NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 35) as Any]
             )
             attributedText.append(NSAttributedString(string: "•    " + recipeString, attributes: [
-                NSAttributedStringKey.foregroundColor : UIColor.white,
-                NSAttributedStringKey.shadow : shadow,
+                NSAttributedStringKey.foregroundColor : UIColor.uiColors.primary,
+                //                NSAttributedStringKey.shadow : shadow,
                 NSAttributedStringKey.font : UIFont.init(name: "Devanagari Sangam MN", size: 16) as Any
                 ]))
             ingredientsTextField.attributedText = attributedText
@@ -50,7 +50,6 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     }
     
     // UI
-    
     let photoImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
@@ -60,35 +59,35 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         imageView.layer.borderWidth = 1
         return imageView
     }()
-        
-    let imageHolderView: UIView = {
+    
+    private let imageHolderView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
         view.backgroundColor = UIColor.clear
         return view
     }()
     
-    let recipeNameLabel: UILabel = {
+    private let recipeNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Recipe Name"
-        label.minimumScaleFactor = 15
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.init(name: "Devanagari Sangam MN", size: 30)
         label.textColor = .white
         label.textAlignment = .center
         label.shadowOffset = CGSize(width: 1, height: 1)
         label.numberOfLines = 0
-        label.minimumScaleFactor = 15
+        label.minimumScaleFactor = 0
         return label
     }()
     
-    let seperatorView: UIView = {
+    private let seperatorView: UIView = {
         let view = UIView()
         view.clipsToBounds = false
         view.layer.cornerRadius = 5
         return view
     }()
     
-    let sourceLabel: UILabel = {
+    private let sourceLabel: UILabel = {
         let label = UILabel()
         label.text = "Source Name"
         label.font = UIFont.init(name: "Devanagari Sangam MN", size: 16)
@@ -99,7 +98,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let ingredientsTextField: UITextView = {
+    private let ingredientsTextField: UITextView = {
         let textView = UITextView()
         textView.clipsToBounds = true
         textView.isSelectable = false
@@ -148,7 +147,6 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         seperatorView.anchor(top: recipeNameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 5, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 1)
         sourceLabel.anchor(top: seperatorView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: 18)
         ingredientsTextField.anchor(top: sourceLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 20, paddingBottom: 8, paddingRight: 20, width: 0, height: 200)
-        
     }
     
 }

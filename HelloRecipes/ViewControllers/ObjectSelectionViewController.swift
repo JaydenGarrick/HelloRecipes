@@ -11,8 +11,7 @@ import AVKit
 import Vision
 import CoreML
 
-
-class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+final class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: - Constants and Variables
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,7 +30,7 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     }()
     
     var selectedImage: UIImage? // Image that is being guessed on
-    var guesses = [String]() // Datasource
+    private(set) var guesses = [String]() // Datasource
     
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
@@ -78,13 +77,13 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
             selectedImage = image
         
             // Creating model for CoreML
-            guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
+            guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
             
             // Getting the request
             let request = VNCoreMLRequest(model: model) { (request, error) in
                 guard let results = request.results as? [VNClassificationObservation] else { return }
                 self.guesses = [] // Empty out the guess array
-                results.forEach { self.guesses.append("\($0.identifier)?") } // For each guess the model makes, append the indentifier to the guess array
+                results.forEach { self.guesses.append($0.identifier) } // For each guess the model makes, append the indentifier to the guess array
                 DispatchQueue.main.async {
                     self.collectionView.reloadData() // Reload CollectionView
                     
@@ -113,17 +112,17 @@ class ObjectSelectionViewController: UIViewController, UICollectionViewDelegate,
     
     @objc fileprivate func handleColorChanged(notification: Notification) {
         collectionView.reloadData()
-        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select an Image, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 22)
         tapOnImageLabel.backgroundColor = UIColor.uiColors.secondary
         tapOnImageLabel.layer.borderColor = UIColor.uiColors.primary.cgColor
     }
     
     @objc fileprivate func handleOnPhotoView(notification: Notification) {
-        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Take a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Take a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 22)
     }
     
     @objc fileprivate func handleOnPictureView(notification: Notification) {
-        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0.7, mainTextColor: .white, textSize: 22)
+        tapOnImageLabel.attributedText = NSAttributedString.stylizedTextWith("Select a picture of your ingredient, and I'll guess what it is!", shadowColor: UIColor.uiColors.primary, shadowOffSet: 0, mainTextColor: UIColor.uiColors.primary, textSize: 22)
     }
 }
 
@@ -150,7 +149,7 @@ extension ObjectSelectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let object = guesses[indexPath.row]
+        let object = guesses[indexPath.row].replacingOccurrences(of: "?", with: "")
         IngredientController.shared.add(ingredient: object)
         performSegue(withIdentifier: "toRecipes", sender: self)
     }
